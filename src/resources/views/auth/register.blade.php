@@ -10,6 +10,16 @@
         <h2>Registrotion</h2>
     </div>
 
+    @if ($errors->any())
+    <div class="form__errors">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li style="color:red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <form class="form" method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -26,6 +36,11 @@
         <div class="input-group">
             <span class="input-icon"><i class="material-icons">lock</i></span>
             <input type="password" name="password" placeholder="Password" required>
+        </div>
+
+        <div class="input-group">
+            <span class="input-icon"><i class="material-icons">lock</i></span>
+            <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
         </div>
 
         <div class="form__button">

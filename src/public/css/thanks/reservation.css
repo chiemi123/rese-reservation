@@ -1,0 +1,39 @@
+.reservation-done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: #eee;
+}
+
+.reservation-done__card {
+    background-color: #fff;
+    width: 450px;
+    height: 280px;
+    padding: 70px 32px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.reservation-done__message {
+    font-size: 25px;
+    margin-bottom: 30px;
+    color: #000;
+    font-weight: 500;
+}
+
+.reservation-done__button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3366ff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.reservation-done__button:hover {
+    background-color: #3366ff;
+}
