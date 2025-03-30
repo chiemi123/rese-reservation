@@ -8,6 +8,7 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -46,6 +47,18 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(function () {
             return view('auth.register');
         });
+
+        // メール認証画面のビューを指定
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
+
+        Log::info('verifyEmailView: 成功');
+
+        // メール認証画面のリダイレクト
+        Fortify::redirects('email-verification', '/thanks');  // メール認証後のリダイレクト先
+        Log::info('email-verification: 成功');
+
 
         Fortify::loginView(function () {
             return view('auth.login');

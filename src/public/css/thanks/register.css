@@ -2,20 +2,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 50vh;
 }
 
 .thanks__card {
-    background-color: white;
-    padding: 2rem;
+    background-color: #fff;
+    width: 450px;
+    height: 280px;
+    padding: 70px 32px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
+    border-radius: 2px;
     text-align: center;
 }
 
 .thanks__message {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 30px;
 }
 
 .thanks__button-wrapper {
@@ -24,14 +27,14 @@
 
 .thanks__login-button {
     display: inline-block;
-    background-color: #3f51b5;
+    background-color: #3366ff;
     color: white;
-    padding: 0.5rem 1.5rem;
+    padding: 8px 24px;
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s;
 }
 
 .thanks__login-button:hover {
-    background-color: #303f9f;
+    background-color: #3366ff;
 }
