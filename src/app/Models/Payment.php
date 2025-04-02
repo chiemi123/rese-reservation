@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'reservation_id',
+        'stripe_payment_id',
+        'amount',
+        'status',
+        'paid_at'
+    ];
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
+    }
 }

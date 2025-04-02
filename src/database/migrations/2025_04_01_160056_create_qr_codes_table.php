@@ -15,6 +15,9 @@ class CreateQrCodesTable extends Migration
     {
         Schema::create('qr_codes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('reservation_id')->constrained()->onDelete('cascade');
+            $table->string('token')->unique();
+            $table->timestamp('used_at')->nullable();
             $table->timestamps();
         });
     }

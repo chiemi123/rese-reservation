@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class QrCode extends Model
 {
-    use HasFactory;
+    protected $fillable = ['reservation_id', 'token', 'used_at'];
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
+    }
 }

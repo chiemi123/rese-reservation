@@ -15,6 +15,9 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();         // ロール識別名（user, shop_owner, admin）
+            $table->string('display_name')->nullable(); // 表示名（利用者、店舗代表、管理者など）
+            $table->text('description')->nullable();     // ロールの説明（任意）
             $table->timestamps();
         });
     }

@@ -15,6 +15,12 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->foreignId('area_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('genre_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('image')->nullable();
+            $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
