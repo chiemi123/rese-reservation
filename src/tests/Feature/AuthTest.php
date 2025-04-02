@@ -25,7 +25,6 @@ class AuthTest extends TestCase
             'name' => 'テスト太郎',
             'email' => 'test@example.com',
             'password' => 'password123',
-            'password_confirmation' => 'password123',
         ]);
 
         Event::assertDispatched(Registered::class); // 登録イベントが発火したか確認
@@ -45,7 +44,6 @@ class AuthTest extends TestCase
             'name' => '',
             'email' => 'invalid-email',
             'password' => '123',
-            'password_confirmation' => 'wrong',
         ]);
 
         $response->assertRedirect('/register');

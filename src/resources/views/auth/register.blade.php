@@ -25,22 +25,17 @@
 
         <div class="form__group">
             <span class="input-icon"><i class="material-icons">person</i></span>
-            <input type="text" name="name" value="{{ old('name') }}" placeholder="Username" required>
+            <input type="text" name="name" value="{{ old('name') }}" placeholder="Username">
         </div>
 
         <div class="input-group">
             <span class="input-icon"><i class="material-icons">email</i></span>
-            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" required>
+            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email">
         </div>
 
         <div class="input-group">
             <span class="input-icon"><i class="material-icons">lock</i></span>
-            <input type="password" name="password" placeholder="Password" required>
-        </div>
-
-        <div class="input-group">
-            <span class="input-icon"><i class="material-icons">lock</i></span>
-            <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
+            <input type="password" name="password" placeholder="Password">
         </div>
 
         <div class="form__button">

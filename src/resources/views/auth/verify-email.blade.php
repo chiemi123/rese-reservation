@@ -19,6 +19,12 @@
     </div>
     @endif
 
+    @if (session('message'))
+    <div class="email-verification__message">
+        {{ session('message') }}
+    </div>
+    @endif
+
     <form method="POST" action="{{ route('verification.send') }}">
         @csrf
         <button type="submit" class="btn resend-verification-button">確認メールを再送信</button>
