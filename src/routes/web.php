@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,16 @@ Route::get('/register', [RegisterController::class, 'show'])->name('register');
 
 Route::post('/register', [RegisterController::class, 'register']);
 
-Route::get('/', function () {
-    return view('index');
-})->middleware(['auth', 'verified']);
+Route::get('/', [ShopController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('shops.index');
+
+Route::get('/shops/{id}', [ShopController::class, 'show'])
+    ->middleware(['auth', 'verified'])
+    ->name('shops.show');
+
+Route::post('/favorite/{shop}', [FavoriteController::class, 'store'])->name('favorite');
+Route::delete('/favorite/{shop}', [FavoriteController::class, 'destroy'])->name('unfavorite');
 
 Route::get('/thanks', function () {
     return view('thanks.register');
