@@ -1,0 +1,184 @@
+/* 全体コンテナ */
+.page-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* 全体のバー */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    padding: 0;
+    overflow: hidden;
+    max-width: 700px;
+    margin-left: auto;
+    margin-bottom: 24px;
+}
+
+/* 各項目（セレクト or 検索） */
+.search-bar__item {
+    width: 160px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-right: 1px solid #e0e0e0;
+    background-color: white;
+}
+
+/* 最後の区切り線なし */
+.search-bar__item:last-child {
+    border-right: none;
+}
+
+/* セレクトボックス */
+.search-bar__select {
+    width: 100%;
+    border: none;
+    text-indent: 6px;
+    background: transparent;
+    appearance: none; /* ▼を消す */
+    font-size: 14px;
+    cursor: pointer;
+    padding-right: 16px; /* 矢印スペース */
+    outline: none;
+}
+
+.search-bar__icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #999;
+    pointer-events: none;
+}
+
+/* 検索フォーム（虫眼鏡＋入力） */
+.search-bar__item--input {
+    flex: 1;
+}
+
+.search-bar__input {
+    width: 100%;
+    padding: 6px 12px 6px 30px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.search-bar__arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #e0e0e0;
+    pointer-events: none;
+}
+
+/* 店舗カード一覧（4列） */
+.shop-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+/* 店舗カード */
+.shop-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.shop-card__image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.shop-card__body {
+    padding: 16px;
+}
+
+.shop-card__title {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.shop-card__tags {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.shop-card__link {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #0066ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.shop-card__link:hover {
+    background-color: #004ecc;
+}
+
+/* 店舗カードのフッター（リンク＋ハート） */
+.shop-card__footer {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.favorite-icon {
+    padding: 6px 12px;
+    font-size: 35px;
+}
+
+/* お気に入りボタン */
+.favorite-form {
+    display: inline;
+}
+
+.favorite-button {
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.favorite-button--active {
+    color: red;
+}
+
+.favorite-button:hover {
+    transform: scale(1.1);
+}
+
+/* ページネーション（Tailwind用） */
+.pagination-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-container p.text-sm.text-gray-700.leading-5 {
+    display: none;
+}
