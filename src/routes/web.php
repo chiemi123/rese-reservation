@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +35,15 @@ Route::get('/shops/{id}', [ShopController::class, 'show'])
 Route::post('/favorite/{shop}', [FavoriteController::class, 'store'])->name('favorite');
 Route::delete('/favorite/{shop}', [FavoriteController::class, 'destroy'])->name('unfavorite');
 
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+
 Route::get('/thanks', function () {
     return view('thanks.register');
 });
 
 Route::get('/done', function () {
     return view('thanks.reservation');
-});
+})->name('reservation.thanks');
 
 // メール認証待ちページ
 Route::get('/email/verify', function () {

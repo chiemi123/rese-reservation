@@ -59,6 +59,6 @@ class ShopController extends Controller
     {
         $shop = Shop::with(['area', 'genre'])->findOrFail($id);
 
-        return view('shops.show', compact('shop'));
+        return view('shops.detail', compact('shop'));
     }
 }
