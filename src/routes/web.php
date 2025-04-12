@@ -7,6 +7,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\ReviewController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +64,24 @@ Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
     return back()->with('message', '認証メールを再送信しました！');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+Route::get('/reservations/confirm/{reservation}', [ReservationController::class, 'confirm'])
+    ->name('reservation.confirm')
+    ->middleware('signed');
+
+Route::middleware(['auth'])->group(function () {
+    // 予約
+    Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+    Route::delete('/reservations/{id}/cancel', [ReservationController::class, 'cancel'])->name('reservations.cancel');
+    Route::put('/reservations/{id}/update', [ReservationController::class, 'update'])->name('reservations.update');
+    Route::get('/reservations/{id}/qr', [ReservationController::class, 'showQr'])->name('reservations.qr');
+
+    // 支払い
+    Route::get('/reservations/{id}/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+    Route::post('/reservations/{id}/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
+
+    // マイページ
+    Route::get('/mypage', [MyPageController::class, 'index'])->name('user.mypage');
+});
