@@ -47,7 +47,7 @@ class ShopController extends Controller
             // ShopモデルのIDだけ配列にして取得
         }
 
-        return view('shops.index', [
+        return view('user.shops.index', [
             'shops' => $shops,
             'areas' => Area::all(),
             'genres' => Genre::all(),
@@ -57,8 +57,8 @@ class ShopController extends Controller
 
     public function show($id)
     {
-        $shop = Shop::with(['area', 'genre'])->findOrFail($id);
+        $shop = Shop::with(['area', 'genre', 'reviews.user'])->findOrFail($id);
 
-        return view('shops.detail', compact('shop'));
+        return view('user.shops.detail', compact('shop'));
     }
 }

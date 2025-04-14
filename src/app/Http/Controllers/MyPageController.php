@@ -17,6 +17,8 @@ class MyPageController extends Controller
         // お気に入りのShop ID一覧（in_arrayで使うため）
         $favorites = $user->favorites()->pluck('shops.id')->toArray();
 
-        return view('user.mypage', compact('reservations', 'favoriteShops', 'favorites'));
+        $reviews = $user->reviews()->with('shop')->latest()->get();
+
+        return view('user.mypage', compact('reservations', 'favoriteShops', 'favorites','reviews'));
     }
 }

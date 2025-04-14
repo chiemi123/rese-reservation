@@ -9,6 +9,9 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\AdminReservationController;
+use App\Http\Controllers\StripeWebhookController;
 
 
 /*
@@ -26,6 +29,8 @@ use App\Http\Controllers\ReviewController;
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
 
 Route::post('/register', [RegisterController::class, 'register']);
+
+Route::post('/stripe/webhook', [StripeWebhookController::class, 'handle']);
 
 Route::get('/', [ShopController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -79,9 +84,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reservations/{id}/qr', [ReservationController::class, 'showQr'])->name('reservations.qr');
 
     // 支払い
-    Route::get('/reservations/{id}/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
-    Route::post('/reservations/{id}/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
+    Route::get('/checkout/{reservation}', [PaymentController::class, 'checkout'])->name('payment.checkout');
+    Route::get('/payment/success/{reservation}', [PaymentController::class, 'success'])->name('payment.success');
+    Route::get('/payment/cancel/{reservation}', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
     // マイページ
     Route::get('/mypage', [MyPageController::class, 'index'])->name('user.mypage');
+});
+
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/reservations/unpaid', [AdminReservationController::class, 'unpaid'])->name('admin.reservations.unpaid');
 });

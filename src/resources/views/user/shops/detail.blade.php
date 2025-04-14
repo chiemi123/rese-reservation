@@ -15,6 +15,22 @@
 
         <p class="shop__tags">#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
         <p class="shop__description">{{ $shop->description }}</p>
+
+        <div class="shop-reviews">
+            <h3 class="shop-reviews__title">レビュー一覧</h3>
+
+            @if ($shop->reviews->isEmpty())
+            <p>まだレビューはありません。</p>
+            @else
+            @foreach ($shop->reviews as $review)
+            <div class="review-card">
+                <p><strong>{{ $review->user->name }}</strong> さん</p>
+                <p>評価：{{ $review->rating }}/5</p>
+                <p>{{ $review->comment }}</p>
+            </div>
+            @endforeach
+            @endif
+        </div>
     </div>
 
     <div class="reservation-card">

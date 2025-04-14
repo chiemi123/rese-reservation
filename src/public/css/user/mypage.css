@@ -15,6 +15,53 @@
     max-width: 300px;
 }
 
+.payment-button-wrapper {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.paid-label {
+    color: #28a745;
+    font-weight: bold;
+    background-color: #e9f7ef;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.payment-alert-box {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.payment-alert-message {
+    color: #856404;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.payment-button {
+    display: inline-block;
+    width: 100%;
+    max-width: 130px;
+    padding: 8px 16px;
+    background-color: #0044cc;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.payment-button:hover {
+    background-color: #0069d9;
+}
+
 .review-form {
     margin-top: 24px;
     padding: 16px;

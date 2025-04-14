@@ -34,7 +34,8 @@ class ReservationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'shop_id.required' => '店舗情報が見つかりません。',
+            'shop_id.required' => '店舗IDが指定されていません。',
+            'shop_id.exists'   => '選択された店舗が存在しません。',
             'date.required'    => '日付を選択してください。',
             'date.date'        => '日付の形式が正しくありません。',
             'time.required'    => '時間を入力してください。',

@@ -9,6 +9,21 @@
 
     <!-- ユーザー名 -->
     <h2 class="page-title">{{ Auth::user()->name }}さん</h2>
+    @if (session('message'))
+    <div class="alert alert-success">
+        ✅ {{ session('message') }}
+    </div>
+    @endif
+
+    @if (request('status') === 'success')
+    <div class="alert alert-success">
+        ✅ お支払いが完了しました。ありがとうございました！
+    </div>
+    @elseif (request('status') === 'cancel')
+    <div class="alert alert-danger">
+        ❌ 決済がキャンセルされました。もう一度お試しください。
+    </div>
+    @endif
 
     {{-- 横並び用のラッパー --}}
     <div class="mypage-layout">
@@ -36,6 +51,19 @@
                 </ul>
 
                 <a href="{{ route('reservations.qr', $reservation->id) }}" class="qr-link">▶ QRコードを表示</a>
+
+                <div class="payment-button-wrapper">
+                    @if ($reservation->payment && $reservation->payment->status === 'paid')
+                    <p class="paid-label">✅ 支払い済み</p>
+                    @else
+                    <div class="payment-alert-box">
+                        <p class="payment-alert-message">⚠ この予約はまだ決済が完了していません。</p>
+                        <a href="{{ route('payment.checkout', $reservation->id) }}" class="payment-button">
+                            💳 決済する
+                        </a>
+                    </div>
+                    @endif
+                </div>
 
                 @if ($errors->any())
                 <ul class="form-errors">
@@ -86,6 +114,7 @@
                     class="reservation-update-form hidden">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="shop_id" value="{{ $reservation->shop->id }}">
                     <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
 
                     <div class="form-group">
@@ -170,6 +199,24 @@
                 <p class="empty-message">お気に入り店舗はありません。</p>
                 @endforelse
             </div>
+        </section>
+
+        <section class="section review-section">
+            <h3 class="section-title">あなたのレビュー</h3>
+
+            @if ($reviews->isEmpty())
+            <p class="empty-message">まだレビューを投稿していません。</p>
+            @else
+            <div class="review-list">
+                @foreach ($reviews as $review)
+                <div class="review-card">
+                    <p><strong>{{ $review->shop->name }}</strong> へのレビュー</p>
+                    <p>評価：{{ $review->rating }}/5</p>
+                    <p>{{ $review->comment }}</p>
+                </div>
+                @endforeach
+            </div>
+            @endif
         </section>
     </div>
 </div>
