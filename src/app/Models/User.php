@@ -54,6 +54,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class, 'user_role');
     }
 
+    public function hasRole($roleName)
+    {
+        return $this->roles->contains('name', $roleName);
+    }
+
     // 予約
     public function reservations()
     {

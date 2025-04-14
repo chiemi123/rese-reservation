@@ -49,7 +49,14 @@ class ReservationController extends Controller
         // バリデーション済みデータを取得
         $validated = $request->validated();
 
-        $reservation->update($validated);
+        // date + time → reserved_at に変換
+        $reservedAt = $validated['date'] . ' ' . $validated['time'];
+
+        $reservation->update([
+            'shop_id' => $validated['shop_id'],
+            'reserved_at' => $reservedAt,
+            'number_of_people' => $validated['number'],
+        ]);
 
         return redirect()->route('user.mypage')->with('message', '予約内容を変更しました。');
     }
@@ -77,6 +84,6 @@ class ReservationController extends Controller
 
         $reservation->update(['status' => 'used']);
 
-        return view('reservation.confirmed', ['message' => '予約が確認されました。']);
+        return view('owner.reservations.confirmed', ['message' => '予約が確認されました。']);
     }
 }
