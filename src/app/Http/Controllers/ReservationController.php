@@ -37,7 +37,7 @@ class ReservationController extends Controller
             ->where('user_id', Auth::id())
             ->firstOrFail();
 
-        $reservation->delete();
+        $reservation->update(['status' => 'canceled']);
 
         return redirect()->route('user.mypage')->with('message', '予約をキャンセルしました。');
     }

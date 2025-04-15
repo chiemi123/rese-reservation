@@ -10,7 +10,8 @@ class MyPageController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $reservations = $user->reservations()->with('shop')->get();
+        $reservations = $user->reservations()
+        ->where('status', '!=', 'canceled')->with('shop')->get();
         // お気に入り店舗の一覧（Shopモデルのコレクション）
         $favoriteShops = $user->favorites;
 

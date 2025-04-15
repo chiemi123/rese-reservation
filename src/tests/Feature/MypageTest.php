@@ -83,28 +83,56 @@ class MypageTest extends TestCase
         $user = User::factory()->create();
         $reservation = Reservation::factory()->create(['user_id' => $user->id]);
 
-        $response = $this->actingAs($user)->get('/mypage');
+        $response = $this->actingAs($user)->get("/reservations/{$reservation->id}/qr");
 
         $response->assertStatus(200);
-        $response->assertSee('data:image/png;base64', false); // 厳密一致を無効に
+        $response->assertSee('<svg', false);
     }
 
-    public function test_reservation_status_updates_after_payment()
+    public function test_payment_success_redirects_to_mypage()
     {
         $user = User::factory()->create();
-        $reservation = Reservation::factory()->create([
-            'user_id' => $user->id,
-            'status' => 'reserved',
-        ]);
+        $reservation = Reservation::factory()->create(['user_id' => $user->id]);
 
-        // Stripeの処理をモック（必要なら Service 層などもFake化）
-        // ここでは支払い成功後のルートを直接叩く例
-        $response = $this->actingAs($user)->post("/reservations/{$reservation->id}/payment/success");
+        $response = $this->actingAs($user)->get("/payment/success/{$reservation->id}");
 
         $response->assertRedirect('/mypage');
 
+        // reservation.status はこの時点ではまだ 'reserved'
         $this->assertDatabaseHas('reservations', [
             'id' => $reservation->id,
+            'status' => 'reserved',
+        ]);
+    }
+
+    public function test_webhook_checkout_session_marks_reservation_as_paid()
+    {
+        $reservation = Reservation::factory()->create(['status' => 'reserved']);
+
+        $payload = [
+            'type' => 'checkout.session.completed',
+            'data' => [
+                'object' => [
+                    'id' => 'cs_test_123',
+                    'amount_total' => 10000,
+                    'metadata' => [
+                        'reservation_id' => $reservation->id,
+                    ],
+                ],
+            ],
+        ];
+
+        $this->withoutMiddleware(); // 署名検証をスキップするなら追加
+
+        $response = $this->postJson('/stripe/webhook', $payload, [
+            'Stripe-Signature' => 'test_signature_header',
+        ]);
+
+        $response->assertStatus(200);
+
+        $this->assertDatabaseHas('payments', [
+            'reservation_id' => $reservation->id,
+            'stripe_payment_id' => 'cs_test_123',
             'status' => 'paid',
         ]);
     }
