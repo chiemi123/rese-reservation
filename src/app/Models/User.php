@@ -14,6 +14,12 @@ use App\Models\Review;
 use App\Models\Notification;
 use App\Models\Role;
 
+
+/**
+ * App\Models\User
+ *
+ * @method bool hasRole(string $roleName)
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;

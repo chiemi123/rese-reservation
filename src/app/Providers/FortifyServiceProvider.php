@@ -60,10 +60,6 @@ class FortifyServiceProvider extends ServiceProvider
         Log::info('email-verification: 成功');
 
 
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
-
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 

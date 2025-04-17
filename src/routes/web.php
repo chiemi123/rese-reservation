@@ -12,6 +12,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\AdminReservationController;
 use App\Http\Controllers\StripeWebhookController;
+use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Auth\UserLoginController;
 
 
 /*
@@ -29,6 +31,14 @@ use App\Http\Controllers\StripeWebhookController;
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
 
 Route::post('/register', [RegisterController::class, 'register']);
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [UserLoginController::class, 'create'])->name('login');
+    Route::post('/login', [UserLoginController::class, 'login']);
+});
+
+Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
+
 
 Route::post('/stripe/webhook', [StripeWebhookController::class, 'handle']);
 
@@ -90,6 +100,18 @@ Route::middleware(['auth'])->group(function () {
 
     // マイページ
     Route::get('/mypage', [MyPageController::class, 'index'])->name('user.mypage');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return '管理者ダッシュボード';
+    })->name('admin.dashboard');
 });
 
 Route::middleware(['auth', 'is_admin'])->group(function () {
