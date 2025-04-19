@@ -13,6 +13,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\AdminReservationController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\Auth\UserLoginController;
 
 
@@ -112,7 +113,14 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return '管理者ダッシュボード';
     })->name('admin.dashboard');
+
+    Route::get('/owners', [OwnerController::class, 'index'])->name('admin.owners.index');
+    Route::get('/owners/create', [OwnerController::class, 'create'])->name('admin.owners.create');
+    Route::post('/owners', [OwnerController::class, 'store'])->name('admin.owners.store');
+    Route::delete('/owners/{owner}', [OwnerController::class, 'destroy'])->name('admin.owners.destroy');
 });
+
+
 
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/reservations/unpaid', [AdminReservationController::class, 'unpaid'])->name('admin.reservations.unpaid');
