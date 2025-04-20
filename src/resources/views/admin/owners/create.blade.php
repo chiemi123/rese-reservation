@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/admin/owners-create.css') }}">
@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="owner-form">
-    <h1 class="owner-form__title">新規店舗代表者登録</h1>
+    <h1 class="owner-form__title">店舗代表者登録</h1>
 
     <form action="{{ route('admin.owners.store') }}" method="POST" class="owner-form__form">
         @csrf
@@ -32,11 +32,13 @@
             <input type="password" name="password_confirmation" id="password_confirmation" class="owner-form__input">
         </div>
 
-        <button type="submit" class="owner-form__submit">登録</button>
+        <div class="owner-form__submit-wrapper">
+            <button type="submit" class="owner-form__submit">登録</button>
+        </div>
     </form>
 
     <div class="owner-form__back">
-        <a href="{{ route('admin.owners.index') }}" class="owner-form__back-button">← 一覧に戻る</a>
+        <a href="{{ route('admin.owners.index') }}" class="owner-form__back-button">戻る</a>
     </div>
 
 </div>
