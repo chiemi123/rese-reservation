@@ -1,0 +1,108 @@
+:root {
+    --theme-blue: #3366ff;
+    --theme-white: #ffffff;
+    --theme-gray: #918989;
+}
+
+/* ダッシュボード全体 */
+.dashboard-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 24px;
+    background-color: var(--theme-blue);
+    color: var(--theme-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+/* タイトル */
+.dashboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--theme-white);
+    margin-bottom: 20px;
+}
+
+/* セクションタイトル */
+.dashboard-section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 30px 0 10px;
+    color: var(--theme-white);
+}
+
+/* リンクカラー */
+.dashboard-links a,
+.dashboard-footer-link {
+    color: var(--theme-blue);
+}
+
+/* リンクカラー（白っぽい青） */
+.dashboard-links a,
+.dashboard-footer-link {
+    color: var(--theme-white);
+    text-decoration: none;
+}
+
+.dashboard-links a:hover,
+.dashboard-footer-link:hover {
+    text-decoration: underline;
+}
+
+/* リストリンク */
+.dashboard-links {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.dashboard-links li {
+    margin-bottom: 8px;
+}
+
+/* テーブル */
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+    background-color: var(--theme-white); /* テーブルは白背景 */
+    color: #555;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.dashboard-table th {
+    background-color: #ddd;
+    color: #555;
+}
+
+.status-reserved {
+    color: #555;
+    font-weight: bold;
+}
+
+.status-canceled {
+    color: #ff4b4b;
+    font-weight: bold;
+}
+
+/* フッターリンク */
+.dashboard-footer-link {
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+    color: var(--theme-white);
+}
+
+.dashboard-footer-link:hover {
+    text-decoration: underline;
+}
