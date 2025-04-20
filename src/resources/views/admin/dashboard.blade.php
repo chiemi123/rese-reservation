@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}">
+@endsection
+
+
 @section('content')
 <div class="dashboard">
     <h1 class="dashboard__title">管理者ダッシュボード</h1>
@@ -22,9 +27,9 @@
     <h2 class="dashboard__subtitle">新規登録ユーザー（最近）</h2>
     <ul class="dashboard__user-list">
         @foreach ($newUsers as $user)
-            <li class="dashboard__user-item">
-                {{ $user->name }}（{{ $user->created_at->format('Y/m/d') }}）
-            </li>
+        <li class="dashboard__user-item">
+            {{ $user->name }}（{{ $user->created_at->format('Y/m/d') }}）
+        </li>
         @endforeach
     </ul>
 </div>
