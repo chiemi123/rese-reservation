@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Rese Admin</title>
+    <title>Rese Owner</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -26,10 +26,10 @@
                 <nav class="nav__content">
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a class="nav__item-link" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                            <a class="nav__item-link" href="{{ route('owner.dashboard') }}">Owner Dashboard</a>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__item-link" href="{{ route('admin.owners.index') }}">店舗代表者一覧</a>
+                            <a class="nav__item-link" href="{{ route('owner.shops.create') }}">店舗情報を登録</a>
                         </li>
                         @auth
                         <li class="nav__item">
@@ -44,7 +44,7 @@
             </div>
 
             <!-- ロゴ -->
-            <div class="header__logo">Rese <small style="font-size: 0.7em;">Admin</small></div>
+            <div class="header__logo">Rese <small style="font-size: 0.7em;">Owner</small></div>
 
             <!-- フラッシュメッセージ表示 -->
             @if (session('success'))

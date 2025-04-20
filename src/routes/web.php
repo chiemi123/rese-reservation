@@ -12,10 +12,13 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\AdminReservationController;
 use App\Http\Controllers\StripeWebhookController;
-use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\Auth\UserLoginController;
+use App\Http\Controllers\Owner\Auth\LoginController as OwnerLoginController;
+use App\Http\Controllers\Owner\DashboardController as OwnerDashboardController;
+
 
 
 /*
@@ -105,13 +108,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AdminLoginController::class, 'login']);
+    Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
 });
 
-Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/owners', [OwnerController::class, 'index'])->name('admin.owners.index');
     Route::get('/owners/create', [OwnerController::class, 'create'])->name('admin.owners.create');
@@ -119,6 +122,22 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::delete('/owners/{owner}', [OwnerController::class, 'destroy'])->name('admin.owners.destroy');
 });
 
+// 店舗代表者用ログイン画面と処理
+Route::prefix('owner')->name('owner.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('login', [OwnerLoginController::class, 'showLoginForm'])->name('login');
+        Route::post('login', [OwnerLoginController::class, 'login']);
+    });
+
+    Route::middleware(['auth', 'role:shop_owner'])->group(function () {
+        Route::get('dashboard', [OwnerDashboardController::class, 'index'])->name('dashboard');
+    });
+
+    Route::get('shops/create', [ShopController::class, 'create'])->name('shops.create');
+    Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
+
+    Route::post('logout', [OwnerLoginController::class, 'logout'])->name('logout');
+});
 
 
 Route::middleware(['auth', 'is_admin'])->group(function () {
