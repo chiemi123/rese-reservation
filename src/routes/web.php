@@ -13,6 +13,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\AdminReservationController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\Auth\UserLoginController;
 
@@ -110,9 +111,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return '管理者ダッシュボード';
-    })->name('admin.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/owners', [OwnerController::class, 'index'])->name('admin.owners.index');
     Route::get('/owners/create', [OwnerController::class, 'create'])->name('admin.owners.create');

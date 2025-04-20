@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             FavoritesTableSeeder::class,
             ReservationsTableSeeder::class,
             ReviewsTableSeeder::class,
+            ShopOwnerSeeder::class,
         ]);
     }
 }

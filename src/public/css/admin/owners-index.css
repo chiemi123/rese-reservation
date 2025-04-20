@@ -1,21 +1,26 @@
 .owner-list {
-    padding: 2rem;
-    background-color: #fff;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px;
+    background-color: #f5f6f8;
+    border-radius: 6px;
 }
 
 .owner-list__title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #555;
 }
 
 .owner-list__actions {
-    margin: 1rem 0;
+    margin: 16px 0;
     text-align: right;
 }
 
 .owner-list__create-button {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 8px 16px;
     background-color: #28a745;
     color: #fff;
     text-decoration: none;
@@ -29,36 +34,103 @@
 }
 
 .owner-list__search-form {
-    margin-bottom: 1rem;
     display: flex;
-    gap: 0.5rem;
+    justify-content: flex-end; /* ← 右寄せ */
+    gap: 8px;
+    margin-bottom: 16px;
 }
 
+.owner-list__search-box {
+    position: relative;
+    width: 240px;
+}
+
+/* Materialアイコンのスタイル */
+.search-bar__icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #aaa;
+}
+
+/* 検索入力欄 */
 .owner-list__search-input {
-    flex: 1;
-    padding: 0.5rem;
+    width: 100%;
+    padding: 8px 12px 8px 36px; /* ← 左にアイコン分の余白 */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.owner-list__search-button {
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
+.table-wrapper {
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #dee2e6;
 }
 
 .owner-list__table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
+    background-color: #fff;
+    color: #555;
+    border-collapse: separate; /* ← 角丸が確実に効く */
+    border-spacing: 0;
+}
+
+.owner-list__table thead tr:first-child th:first-child {
+    border-top-left-radius: 4px;
+}
+
+.owner-list__table thead tr:first-child th:last-child {
+    border-top-right-radius: 4px;
+}
+
+.owner-list__table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 4px;
+}
+
+.owner-list__table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 4px;
 }
 
 .owner-list__table th,
 .owner-list__table td {
-    border: 1px solid #ccc;
-    padding: 0.75rem;
-    text-align: left;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.owner-list__table thead {
+    background-color: #3366ff;
+    color: #fff;
+    height: 60.1px;
+    font-size: 18px;
+}
+
+.owner-list__delete-button {
+    background-color: #3366ff;
+    color: #fff;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.owner-list__delete-button:hover {
+    background-color: #305de5;
 }
 
 .owner-list__pagination {
-    margin-top: 1.5rem;
+    margin-top: 24px;
+}
+
+.owner-list__pagination p.text-sm.text-gray-700.leading-5 {
+    display: none;
 }
