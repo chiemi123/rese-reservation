@@ -1,0 +1,135 @@
+body {
+    background-color: #f9f9f9;
+    font-family: "Helvetica Neue", sans-serif;
+    margin: 0;
+}
+
+.page-title {
+    text-align: center;
+    color: #555;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* ---------- フォーム全体 ---------- */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- フォーム項目 ---------- */
+.form-group {
+    margin-bottom: 24px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+    text-align: left;
+}
+
+input[type="text"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    height: 48px;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #3366ff;
+    outline: none;
+}
+
+textarea {
+    width: 100%;
+    height: 120px; /* 複数行に適した高さ */
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    resize: vertical; /* ユーザーが高さ調整できるようにする（任意） */
+    background-color: #fff;
+}
+
+/* セレクトボックス用ラッパー */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+/* セレクト本体 */
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 12px 36px 12px 14px; /* 矢印分のスペース確保 */
+}
+
+/* カスタム矢印 */
+.search-bar__arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #555;
+    font-size: 16px;
+}
+
+/* ---------- ボタン ---------- */
+.owner-btn-primary {
+    width: 100%;
+    max-width: 200px;
+    background-color: #3366ff;
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.owner-btn-primary:hover {
+    background-color: #264fcc;
+}
+
+/* ---------- エラーメッセージ ---------- */
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* ---------- 画像表示（編集時） ---------- */
+img.preview {
+    display: block;
+    margin-top: 10px;
+    max-width: 200px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

@@ -18,6 +18,9 @@ use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\Owner\Auth\LoginController as OwnerLoginController;
 use App\Http\Controllers\Owner\DashboardController as OwnerDashboardController;
+use App\Http\Controllers\Owner\ShopController as OwnerShopController;
+
+
 
 
 
@@ -122,21 +125,30 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::delete('/owners/{owner}', [OwnerController::class, 'destroy'])->name('admin.owners.destroy');
 });
 
-// 店舗代表者用ログイン画面と処理
+// 店舗代表者のログイン処理
 Route::prefix('owner')->name('owner.')->group(function () {
+    // ログイン関連（未認証ユーザー用）
     Route::middleware('guest')->group(function () {
         Route::get('login', [OwnerLoginController::class, 'showLoginForm'])->name('login');
         Route::post('login', [OwnerLoginController::class, 'login']);
     });
 
+    // ログアウト（認証済み）
+    Route::post('logout', [OwnerLoginController::class, 'logout'])->name('logout');
+
+    // 店舗代表者用ページ（認証後）
     Route::middleware(['auth', 'role:shop_owner'])->group(function () {
         Route::get('dashboard', [OwnerDashboardController::class, 'index'])->name('dashboard');
+
+        // 店舗登録・編集など（全て /owner/shops/...）
+        Route::get('shops/create', [OwnerShopController::class, 'create'])->name('shops.create');
+        Route::post('shops', [OwnerShopController::class, 'store'])->name('shops.store');
+        Route::get('shops/{shop}/edit', [OwnerShopController::class, 'edit'])->name('shops.edit');
+        Route::put('shops/{shop}', [OwnerShopController::class, 'update'])->name('shops.update');
+
+        // 予約一覧など
+        Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
     });
-
-    Route::get('shops/create', [ShopController::class, 'create'])->name('shops.create');
-    Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
-
-    Route::post('logout', [OwnerLoginController::class, 'logout'])->name('logout');
 });
 
 
