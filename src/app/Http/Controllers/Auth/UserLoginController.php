@@ -33,7 +33,7 @@ class UserLoginController extends Controller
             }
 
             // ✅ 管理者ユーザーはブロック（一般用画面ではログイン不可）
-            if ($user->hasRole('admin') || $user->hasRole('owner')) {
+            if ($user->hasRole('admin') || $user->hasRole('shop_owner')) {
                 Auth::guard('web')->logout();
 
                 return back()->withErrors([

@@ -131,22 +131,29 @@
     padding: 0;
 }
 
-.alert {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    font-size: 14px;
+.flash-message-wrapper {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 0 16px; /* モバイル対応のための左右余白 */
 }
 
-.alert-danger {
-    color: #d9534f; /* 濃い赤 */
-    background-color: #ffe5e5; /* 淡い赤 */
-    border: 1px solid #d9534f;
+.alert {
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
+    background-color: #dff4e5;
+    border: 1px solid #4caf50;
+    color: #2e7d32;
+}
+
+.alert-danger {
+    background-color: #ffebee;
+    border: 1px solid #f44336;
+    color: #c62828;
 }

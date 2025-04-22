@@ -14,6 +14,8 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
+        $shops = $user->shops()->with(['area', 'genre'])->paginate(6);
+
         // 店舗代表者に紐づいた予約の最新5件を取得
         $reservations = Reservation::whereHas('shop', function ($query) use ($user) {
             $query->where('owner_id', $user->id);
@@ -23,6 +25,7 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        return view('owner.dashboard', compact('user', 'reservations'));
+
+        return view('owner.dashboard', compact('user', 'shops', 'reservations'));
     }
 }

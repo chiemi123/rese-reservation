@@ -33,7 +33,7 @@
                         </li>
                         @auth
                         <li class="nav__item">
-                            <form method="POST" action="{{ route('admin.logout') }}">
+                            <form method="POST" action="{{ route('owner.logout') }}">
                                 @csrf
                                 <button type="submit" class="nav__item-link logout-btn">Logout</button>
                             </form>
@@ -45,8 +45,14 @@
 
             <!-- ロゴ -->
             <div class="header__logo">Rese <small style="font-size: 0.7em;">Owner</small></div>
+        </div>
 
-            <!-- フラッシュメッセージ表示 -->
+        @yield('header')
+    </header>
+
+    <main>
+        <!-- フラッシュメッセージ表示 -->
+        <div class="flash-message-wrapper">
             @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -63,11 +69,6 @@
             </div>
             @endif
         </div>
-
-        @yield('header')
-    </header>
-
-    <main>
         @yield('content')
     </main>
 </body>

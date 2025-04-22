@@ -46,7 +46,13 @@
             <!-- ロゴ -->
             <div class="header__logo">Rese <small style="font-size: 0.7em;">Admin</small></div>
 
-            <!-- フラッシュメッセージ表示 -->
+        </div>
+
+        @yield('header')
+    </header>
+
+    <main>
+        <div class="flash-message-wrapper">
             @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -64,10 +70,6 @@
             @endif
         </div>
 
-        @yield('header')
-    </header>
-
-    <main>
         @yield('content')
     </main>
 </body>
