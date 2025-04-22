@@ -33,7 +33,7 @@
                         </li>
                         @auth
                         <li class="nav__item">
-                            <form method="POST" action="{{ route('admin.logout') }}">
+                            <form method="POST" action="{{ route('owner.logout') }}">
                                 @csrf
                                 <button type="submit" class="nav__item-link logout-btn">Logout</button>
                             </form>

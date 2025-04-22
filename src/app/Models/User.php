@@ -61,6 +61,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class, 'user_role');
     }
 
+    /**
+     * ユーザーが指定されたロールを持っているか確認
+     *
+     * @param string $roleName
+     * @return bool
+     */
     public function hasRole($roleName)
     {
         return $this->roles->contains('name', $roleName);

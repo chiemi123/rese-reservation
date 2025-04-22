@@ -116,7 +116,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
 });
 
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth:admin', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/owners', [OwnerController::class, 'index'])->name('admin.owners.index');
@@ -133,11 +133,13 @@ Route::prefix('owner')->name('owner.')->group(function () {
         Route::post('login', [OwnerLoginController::class, 'login']);
     });
 
-    // ログアウト（認証済み）
-    Route::post('logout', [OwnerLoginController::class, 'logout'])->name('logout');
+
 
     // 店舗代表者用ページ（認証後）
-    Route::middleware(['auth', 'role:shop_owner'])->group(function () {
+    Route::middleware(['auth:owner', 'role:shop_owner'])->group(function () {
+        // ログアウト（認証済み）
+        Route::post('logout', [OwnerLoginController::class, 'logout'])->name('logout');
+
         Route::get('dashboard', [OwnerDashboardController::class, 'index'])->name('dashboard');
 
         // 店舗登録・編集など（全て /owner/shops/...）

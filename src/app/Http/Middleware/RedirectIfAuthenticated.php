@@ -24,15 +24,13 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                $user = Auth::guard($guard)->user();
-
-                /** @var \App\Models\User $user */
-                if ($user->hasRole('admin')) {
-                    return redirect('/admin/dashboard');
-                } elseif ($user->hasRole('owner')) {
-                    return redirect('/owner/dashboard');
-                } else {
-                    return redirect('/'); // 一般ユーザーなど
+                switch ($guard) {
+                    case 'admin':
+                        return redirect('/admin/dashboard');
+                    case 'owner':
+                        return redirect('/owner/dashboard');
+                    default:
+                        return redirect('/');
                 }
             }
         }

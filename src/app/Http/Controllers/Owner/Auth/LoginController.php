@@ -18,12 +18,15 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+        if (Auth::guard('owner')->attempt($credentials, $request->filled('remember'))) {
+            $request->session()->regenerate();
+
+            $user = Auth::guard('owner')->user();
+
             if ($user->hasRole('shop_owner')) {
                 return redirect()->intended('/owner/dashboard');
             } else {
-                Auth::logout();
+                Auth::guard('owner')->logout();
                 return redirect()->route('owner.login')->withErrors(['email' => '店舗代表者アカウントではありません']);
             }
         }
@@ -33,7 +36,11 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('owner')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('owner.login');
     }
 }
