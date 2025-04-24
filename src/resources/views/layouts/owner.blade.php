@@ -44,7 +44,7 @@
             </div>
 
             <!-- ロゴ -->
-            <div class="header__logo">Rese <small style="font-size: 0.7em;">Owner</small></div>
+            <div class="header__logo">Rese Owner</div>
         </div>
 
         @yield('header')

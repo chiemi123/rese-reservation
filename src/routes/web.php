@@ -19,7 +19,7 @@ use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\Owner\Auth\LoginController as OwnerLoginController;
 use App\Http\Controllers\Owner\DashboardController as OwnerDashboardController;
 use App\Http\Controllers\Owner\ShopController as OwnerShopController;
-
+use App\Http\Controllers\Owner\ReservationController as OwnerReservationController;
 
 
 
@@ -139,7 +139,7 @@ Route::prefix('owner')->name('owner.')->group(function () {
     Route::middleware(['auth:owner', 'role:shop_owner'])->group(function () {
         // ログアウト（認証済み）
         Route::post('logout', [OwnerLoginController::class, 'logout'])->name('logout');
-
+        // ダッシュボード
         Route::get('dashboard', [OwnerDashboardController::class, 'index'])->name('dashboard');
 
         // 店舗登録・編集など（全て /owner/shops/...）
@@ -149,7 +149,7 @@ Route::prefix('owner')->name('owner.')->group(function () {
         Route::put('shops/{shop}', [OwnerShopController::class, 'update'])->name('shops.update');
 
         // 予約一覧など
-        Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
+        Route::get('reservations', [OwnerReservationController::class, 'index'])->name('reservations.index');
     });
 });
 
