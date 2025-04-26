@@ -116,13 +116,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
 });
 
-Route::middleware(['auth:admin', 'role:admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth:admin', 'role.admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/owners', [OwnerController::class, 'index'])->name('admin.owners.index');
     Route::get('/owners/create', [OwnerController::class, 'create'])->name('admin.owners.create');
     Route::post('/owners', [OwnerController::class, 'store'])->name('admin.owners.store');
     Route::delete('/owners/{owner}', [OwnerController::class, 'destroy'])->name('admin.owners.destroy');
+    Route::get('/admin/reservations/unpaid', [AdminReservationController::class, 'unpaid'])->name('admin.reservations.unpaid');
 });
 
 // 店舗代表者のログイン処理
@@ -136,7 +137,7 @@ Route::prefix('owner')->name('owner.')->group(function () {
 
 
     // 店舗代表者用ページ（認証後）
-    Route::middleware(['auth:owner', 'role:shop_owner'])->group(function () {
+    Route::middleware(['auth:owner', 'role.owner'])->group(function () {
         // ログアウト（認証済み）
         Route::post('logout', [OwnerLoginController::class, 'logout'])->name('logout');
         // ダッシュボード
@@ -151,9 +152,4 @@ Route::prefix('owner')->name('owner.')->group(function () {
         // 予約一覧など
         Route::get('reservations', [OwnerReservationController::class, 'index'])->name('reservations.index');
     });
-});
-
-
-Route::middleware(['auth', 'is_admin'])->group(function () {
-    Route::get('/admin/reservations/unpaid', [AdminReservationController::class, 'unpaid'])->name('admin.reservations.unpaid');
 });

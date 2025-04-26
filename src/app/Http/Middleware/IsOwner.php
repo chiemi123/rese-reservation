@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class IsOwner
 {
     /**
      * Handle an incoming request.
@@ -19,10 +19,8 @@ class IsAdmin
     {
         $user = Auth::user();
 
-        if ($user && $user->hasRole('admin')) { // ←ここをリレーション方式に対応させる！
+        if ($user && $user->hasRole('shop_owner')) {
             return $next($request);
         }
-
-        abort(403); // アクセス拒否
     }
 }
