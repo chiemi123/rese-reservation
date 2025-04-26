@@ -10,6 +10,7 @@
 <h1 class="page-title">{{ isset($shop) ? '店舗情報編集' : '新規店舗登録' }}</h1>
 
 <form
+    class="shop-form"
     method="POST"
     action="{{ isset($shop)
         ? route('owner.shops.update', ['shop' => $shop->id])
@@ -21,7 +22,7 @@
     @endif
 
     {{-- 店舗名 --}}
-    <div class="form-group">
+    <div class="shop-form__group">
         <label for="name">店舗名</label>
         <input
             id="name"
@@ -29,26 +30,26 @@
             name="name"
             value="{{ old('name', $shop->name ?? '') }}">
         @error('name')
-        <div class="error">{{ $message }}</div>
+        <div class="shop-form__error">{{ $message }}</div>
         @enderror
     </div>
 
     {{-- 説明文 --}}
-    <div class="form-group">
+    <div class="shop-form__group">
         <label for="description">説明</label>
         <textarea
             id="description"
             name="description"
             rows="5">{{ old('description', $shop->description ?? '') }}</textarea>
         @error('description')
-        <div class="error">{{ $message }}</div>
+        <div class="shop-form__error">{{ $message }}</div>
         @enderror
     </div>
 
     {{-- エリア --}}
-    <div class="form-group">
+    <div class="shop-form__group">
         <label for="area_id">エリア</label>
-        <div class="select-wrapper">
+        <div class="shop-form__select-wrapper">
             <select id="area_id" name="area_id">
                 @foreach($areas as $area)
                 <option
@@ -58,17 +59,17 @@
                 </option>
                 @endforeach
             </select>
-            <span class="search-bar__arrow">⮟</span>
+            <span class="shop-form__select-arrow">⮟</span>
         </div>
         @error('area_id')
-        <div class="error">{{ $message }}</div>
+        <div class="shop-form__error">{{ $message }}</div>
         @enderror
     </div>
 
     {{-- ジャンル --}}
-    <div class="form-group">
+    <div class="shop-form__group">
         <label for="genre_id">ジャンル</label>
-        <div class="select-wrapper">
+        <div class="shop-form__select-wrapper">
             <select id="genre_id" name="genre_id">
                 @foreach($genres as $genre)
                 <option
@@ -78,24 +79,24 @@
                 </option>
                 @endforeach
             </select>
-            <span class="search-bar__arrow">⮟</span>
+            <span class="shop-form__select-arrow">⮟</span>
         </div>
         @error('genre_id')
-        <div class="error">{{ $message }}</div>
+        <div class="shop-form__error">{{ $message }}</div>
         @enderror
     </div>
 
     {{-- 画像 --}}
-    <div class="form-group">
+    <div class="shop-form__group">
         <label for="image">店舗画像</label>
         @if (!empty($shop->image))
         <div>
             @if (Str::startsWith($shop->image, ['http://', 'https://']))
             {{-- 外部URLの場合 --}}
-            <img src="{{ $shop->image }}" alt="現在の画像" class="preview">
+            <img src="{{ $shop->image }}" alt="現在の画像" class="shop-form__image-preview">
             @else
             {{-- ローカルstorageの場合 --}}
-            <img src="{{ asset('storage/' . $shop->image) }}" alt="現在の画像" class="preview">
+            <img src="{{ asset('storage/' . $shop->image) }}" alt="現在の画像" class="shop-form__image-preview">
             @endif
         </div>
         @else
@@ -103,15 +104,16 @@
         @endif
         <input id="image" type="file" name="image">
         @error('image')
-        <div class="error">{{ $message }}</div>
+        <div class="shop-form__error">{{ $message }}</div>
         @enderror
     </div>
 
     {{-- ボタン --}}
-    <div class="form-group">
-        <button type="submit" class="owner-btn-primary">
+    <div class="shop-form__group">
+        <button type="submit" class="shop-form__submit-btn">
             {{ isset($shop) ? '更新する' : '登録する' }}
         </button>
     </div>
 </form>
+
 @endsection
