@@ -26,12 +26,12 @@
     <!-- テーブル形式（PC） -->
     <div class="owner-reservations__table-wrapper">
         <table class="owner-reservations__table">
-            <thead class="owner-reservations__thead">
+            <thead>
                 <tr class="owner-reservations__row owner-reservations__row--header">
-                    <th class="owner-reservations__cell">予約者名</th>
-                    <th class="owner-reservations__cell">予約日時</th>
-                    <th class="owner-reservations__cell">人数</th>
-                    <th class="owner-reservations__cell">ステータス</th>
+                    <th class="owner-reservations__header-cell">予約者名</th>
+                    <th class="owner-reservations__header-cell">予約日時</th>
+                    <th class="owner-reservations__header-cell">人数</th>
+                    <th class="owner-reservations__header-cell">ステータス</th>
                 </tr>
             </thead>
             <tbody class="owner-reservations__tbody">

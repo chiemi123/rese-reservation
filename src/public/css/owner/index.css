@@ -31,15 +31,11 @@
     border-radius: 4px;
 }
 
-/* PC（768px以上）の場合は非表示にする */
 @media (min-width: 768px) {
     .owner-reservations__card-shop-title {
         display: none;
     }
-}
 
-/* ===== PCビュー用（768px以上） ===== */
-@media (min-width: 768px) {
     .owner-reservations__table-wrapper {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -58,19 +54,19 @@
         border-collapse: collapse;
     }
 
-    .owner-reservations__thead {
-        height: 55px;
+    .owner-reservations__header-cell {
         background-color: #3366ff;
         color: #ffffff;
-    }
-
-    .owner-reservations__thead th {
         font-size: 18px;
         font-weight: bold;
+        padding: 16px;
+        border: 1px solid #ddd;
+        text-align: center;
     }
 
     .owner-reservations__row {
         border-bottom: 1px solid #ddd;
+        background-color: #ffffff;
     }
 
     .owner-reservations__cell {
@@ -113,8 +109,9 @@
 
     .owner-reservations__card {
         display: block;
-        background: #f9f9f9;
+        background-color: #ffffff;
         border: 1px solid #ddd;
+        color: #555;
         border-radius: 8px;
         padding: 16px;
         margin-bottom: 12px;
