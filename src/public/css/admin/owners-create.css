@@ -105,3 +105,30 @@
 .owner-form__back-button:hover {
     background-color: #5a6268;
 }
+
+@media screen and (max-width: 768px) {
+    .owner-form {
+        padding: 20px 20px;
+    }
+
+    .owner-form__label,
+    .owner-form__input {
+        width: 90%;
+        max-width: none;
+    }
+
+    .owner-form__submit,
+    .owner-form__back-button {
+        width: 60%;
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .owner-form {
+        width: 90%; /* 画面幅の90%だけ使う */
+        max-width: 360px; /* 最大でも360pxまでにする */
+        padding: 16px;
+        margin: 0 auto;
+    }
+}
