@@ -88,12 +88,13 @@
                     <span class="summary-value" id="selected-number">-</span>
                 </div>
             </div>
+
+            {{-- ボタン --}}
+            <div class="reservation-card__button-wrapper">
+                <button type="submit" class="reservation-card__button">予約する</button>
+            </div>
         </form>
 
-        {{-- ボタン --}}
-        <div class="reservation-card__button-wrapper">
-            <button type="submit" class="reservation-card__button">予約する</button>
-        </div>
     </div>
 </div>
 

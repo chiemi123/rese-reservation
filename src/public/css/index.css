@@ -7,18 +7,24 @@
     color: #555;
 }
 
+.search-bar-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+    padding: 0 35px;
+}
+
 /* 全体のバー */
 .search-bar {
     display: flex;
     align-items: center;
-    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     padding: 0;
     overflow: hidden;
-    max-width: 700px;
-    margin-left: auto;
-    margin-bottom: 24px;
 }
 
 /* 各項目（セレクト or 検索） */
@@ -86,8 +92,12 @@
 
 /* 店舗カード一覧（4列） */
 .shop-list {
+    width: 100%;
+    max-width: 1200px;
+    margin: 24px auto 0 auto;
+    padding: 0 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 250px));
     gap: 24px;
     justify-content: center;
     margin-top: 24px;
@@ -187,6 +197,10 @@
 
 /* 768px以下（タブレット用） */
 @media screen and (max-width: 768px) {
+    .search-bar-wrapper {
+        padding: 0 20px;
+    }
+
     .search-bar {
         flex-direction: column;
         align-items: stretch;

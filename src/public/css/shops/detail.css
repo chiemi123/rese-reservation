@@ -192,21 +192,26 @@
     font-size: 16px;
 }
 
-/* 予約ボタン */
+/* 予約ボタン周り */
 .reservation-card__button-wrapper {
-    background-color: #0044cc;
-    padding: 12px;
+    width: 100%;
+    margin-top: auto;
+    padding: 0;
+}
+
+.reservation-card__button {
+    width: 100%;
+    padding: 16px 0;
     font-size: 18px;
+    background-color: #0033cc;
     color: #ffffff;
     border: none;
-    border-radius: 0 0 6px 6px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
-    width: 100%;
-    display: block;
-    text-align: center;
-    margin-top: auto; /* ボタンを一番下に押し出す */
 }
 
 .reservation-card__button:hover {
@@ -281,7 +286,6 @@
     .reservation-card__form {
         width: 100%;
         max-width: 320px;
-        padding: 0 16px 24px;
         display: flex;
         flex-direction: column;
         flex: 1;
@@ -290,31 +294,31 @@
     /* 入力欄 */
     .reservation-card__input {
         width: 100%;
-        max-width: 100%;
-        margin: 0 auto 12px;
+        max-width: 220px;
+        margin: 10px 20px;
     }
 
     /* セレクトボックスの親 */
     .select-wrapper {
         width: 100%;
-        max-width: 100%;
+        max-width: 220px;
     }
 
     /* セレクトボックス本体 */
     .select-wrapper select {
         width: 100%;
-        max-width: 100%;
-        margin: 0 auto 12px;
+        max-width: 220px;
     }
 
     .search-bar__arrow {
-        top: 40%;
-        right: 15px;
+        top: 50%;
+        right: 20px;
     }
 
     .reservation-card__summary {
-        margin-left: 0;
-        max-width: 100%;
+        width: 100%;
+        max-width: 220px;
+        margin: 16px 20px;
     }
 
     .reservation-card__title {
@@ -323,14 +327,10 @@
         font-size: 20px;
     }
 
-    .reservation-card__button-wrapper {
-        width: 100%;
-        max-width: 320px;
-        font-size: 16px;
-    }
-
+    .reservation-card__button-wrapper,
     .reservation-card__button {
         width: 100%;
         max-width: 320px;
+        font-size: 16px;
     }
 }
