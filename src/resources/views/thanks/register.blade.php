@@ -15,7 +15,7 @@
                 @guest
                 <a href="/login" class="thanks__login-button">ログインする</a>
                 @else
-                <a href="/" class="thanks__login-button">トップページへ</a>
+                <a href="/" class="thanks__login-button">Homeへ</a>
                 @endguest
             </div>
         </div>

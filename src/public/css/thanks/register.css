@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    min-height: 50vh;
 }
 
 .thanks__card {
@@ -11,14 +11,14 @@
     height: 280px;
     padding: 70px 32px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 2px;
+    border-radius: 4px;
     text-align: center;
 }
 
 .thanks__message {
     font-size: 25px;
     font-weight: 500;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .thanks__button-wrapper {
@@ -37,4 +37,44 @@
 
 .thanks__login-button:hover {
     background-color: #3366ff;
+}
+
+@media screen and (max-width: 768px) {
+    .thanks__card {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .thanks__message {
+        font-size: 18px;
+        margin-bottom: 35px;
+    }
+
+    .thanks__login-button {
+        width: 100%;
+        max-width: 120px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .thanks__card {
+        width: 90%;
+        max-width: 270px;
+        padding: 30px 16px;
+        height: auto;
+    }
+
+    .thanks__message {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .thanks__login-button {
+        width: 100%;
+        max-width: 100px;
+        padding: 5px 8px;
+        font-size: 13px;
+    }
 }
