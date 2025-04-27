@@ -6,33 +6,35 @@
 
 @section('content')
 <div class="page-container">
-    {{-- 検索・絞り込みフォーム --}}
-    <form method="GET" action="{{ route('shops.index') }}" class="search-bar">
-        <div class="search-bar__item">
-            <select name="area" class="search-bar__select">
-                <option value="">All area</option>
-                @foreach ($areas as $area)
-                <option value="{{ $area->id }}" {{ request('area') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
-                @endforeach
-            </select>
-            <span class="search-bar__arrow">⮟</span>
-        </div>
+    <div class="search-bar-wrapper">
+        {{-- 検索・絞り込みフォーム --}}
+        <form method="GET" action="{{ route('shops.index') }}" class="search-bar">
+            <div class="search-bar__item">
+                <select name="area" class="search-bar__select">
+                    <option value="">All area</option>
+                    @foreach ($areas as $area)
+                    <option value="{{ $area->id }}" {{ request('area') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
+                    @endforeach
+                </select>
+                <span class="search-bar__arrow">⮟</span>
+            </div>
 
-        <div class="search-bar__item">
-            <select name="genre" class="search-bar__select">
-                <option value="">All genre</option>
-                @foreach ($genres as $genre)
-                <option value="{{ $genre->id }}" {{ request('genre') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
-                @endforeach
-            </select>
-            <span class="search-bar__arrow">⮟</span>
-        </div>
+            <div class="search-bar__item">
+                <select name="genre" class="search-bar__select">
+                    <option value="">All genre</option>
+                    @foreach ($genres as $genre)
+                    <option value="{{ $genre->id }}" {{ request('genre') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
+                    @endforeach
+                </select>
+                <span class="search-bar__arrow">⮟</span>
+            </div>
 
-        <div class="search-bar__item search-bar__item--input">
-            <span class="material-icons search-bar__icon">search</span>
-            <input type="text" name="word" value="{{ request('word') }}" placeholder="Search ..." class="search-bar__input">
-        </div>
-    </form>
+            <div class="search-bar__item search-bar__item--input">
+                <span class="material-icons search-bar__icon">search</span>
+                <input type="text" name="word" value="{{ request('word') }}" placeholder="Search ..." class="search-bar__input">
+            </div>
+        </form>
+    </div>
 
     {{-- 飲食店カード一覧 --}}
     <div class="shop-list">
