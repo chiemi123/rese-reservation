@@ -4,6 +4,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 24px;
+    color: #555;
 }
 
 /* 全体のバー */
@@ -86,8 +87,9 @@
 /* 店舗カード一覧（4列） */
 .shop-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
     gap: 24px;
+    justify-content: center;
     margin-top: 24px;
 }
 
@@ -181,4 +183,53 @@
 
 .pagination-container p.text-sm.text-gray-700.leading-5 {
     display: none;
+}
+
+/* 768px以下（タブレット用） */
+@media screen and (max-width: 768px) {
+    .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 24px;
+        padding: 16px;
+    }
+
+    .search-bar__item {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .search-bar__item:last-child {
+        border-bottom: none;
+    }
+}
+
+/* 480px以下（スマホ用） */
+@media screen and (max-width: 480px) {
+    .shop-list {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    .shop-card__image {
+        height: 140px;
+    }
+
+    .shop-card__title {
+        font-size: 16px;
+    }
+
+    .shop-card__tags {
+        font-size: 12px;
+    }
+
+    .search-bar {
+        padding: 12px;
+    }
+
+    .shop-card__link {
+        font-size: 15px;
+    }
 }
