@@ -64,3 +64,73 @@ input[type="password"] {
 .form__button-submit:hover {
     background-color: #0039cb;
 }
+
+@media screen and (max-width: 768px) {
+    .register-form__content {
+        width: 80%;
+        max-width: 400px;
+        margin: 40px auto;
+        padding: 20px 24px;
+    }
+
+    .register-form__heading h2 {
+        font-size: 18px;
+        padding: 16px;
+        margin: -20px -25px 20px -25px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .form__button-submit {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .register-form__content {
+        width: 90%;
+        max-width: 320px;
+        margin: 20px auto;
+        padding: 16px;
+    }
+
+    .register-form__heading h2 {
+        margin: -20px -17px 20px -17px;
+    }
+
+    .form__group,
+    .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+
+    .material-icons {
+        font-size: 28px;
+        margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .form__button {
+        text-align: center;
+        margin-top: 16px;
+    }
+
+    .form__button-submit {
+        width: 100%;
+        max-width: 200px;
+    }
+}
