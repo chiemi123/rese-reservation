@@ -119,13 +119,13 @@
 
                     <div class="form-group">
                         <label for="date-{{ $reservation->id }}">日付</label>
-                        <input id="date" type="date" name="date" class="reservation-card__input" required>
+                        <input id="date-{{ $reservation->id }}" type="date" name="date" class="reservation-card__input" required>
                     </div>
 
                     <div class="form-group select-wrapper">
                         <label for="time-{{ $reservation->id }}">時間</label>
                         <div class="select-container">
-                            <select id="time" name="time" class="reservation-card__input" required>
+                            <select id="time-{{ $reservation->id }}" name="time" class="reservation-card__input" required>
                                 <option value="" disabled selected>時間を選択</option>
                                 @for ($hour = 10; $hour <= 22; $hour++) {{-- 10時〜22時まで --}}
                                     @for ($minute=0; $minute < 60; $minute +=10) {{-- 10分刻み --}}
@@ -143,7 +143,7 @@
                     <div class="form-group select-wrapper">
                         <label for="number-{{ $reservation->id }}">人数</label>
                         <div class="select-container">
-                            <select id="number" name="number" class="reservation-card__input" required>
+                            <select id="number-{{ $reservation->id }}" name="number" class="reservation-card__input" required>
                                 <option value="" disabled selected>人数を選択</option>
                                 @for($i = 1; $i <= 10; $i++)
                                     <option value="{{ $i }}">{{ $i }}人</option>
@@ -199,24 +199,6 @@
                 <p class="empty-message">お気に入り店舗はありません。</p>
                 @endforelse
             </div>
-        </section>
-
-        <section class="section review-section">
-            <h3 class="section-title">あなたのレビュー</h3>
-
-            @if ($reviews->isEmpty())
-            <p class="empty-message">まだレビューを投稿していません。</p>
-            @else
-            <div class="review-list">
-                @foreach ($reviews as $review)
-                <div class="review-card">
-                    <p><strong>{{ $review->shop->name }}</strong> へのレビュー</p>
-                    <p>評価：{{ $review->rating }}/5</p>
-                    <p>{{ $review->comment }}</p>
-                </div>
-                @endforeach
-            </div>
-            @endif
         </section>
     </div>
 </div>

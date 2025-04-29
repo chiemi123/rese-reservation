@@ -6,13 +6,19 @@
 
 .mypage-layout {
     display: flex;
+    flex-wrap: wrap;
     gap: 40px;
     align-items: flex-start;
+    justify-content: space-between;
 }
 
 .reservation-section {
     flex: 1;
     max-width: 300px;
+}
+
+.favorite-section {
+    flex: 2;
 }
 
 .payment-button-wrapper {
@@ -74,7 +80,8 @@
     margin-bottom: 16px;
 }
 
-.review-form__select {
+.review-form__select,
+.review-form__textarea {
     width: 100%;
     padding: 8px;
     background-color: #fff;
@@ -85,14 +92,7 @@
 }
 
 .review-form__textarea {
-    width: 100%;
     height: 100px;
-    padding: 8px;
-    font-size: 16px;
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     resize: vertical;
 }
 
@@ -175,7 +175,6 @@
     margin-bottom: 10px;
 }
 
-/* 予約変更フォームの共通入力フィールド */
 .reservation-card__input,
 .reservation-update-form input[type="date"],
 .reservation-update-form select {
@@ -248,10 +247,6 @@
     font-size: 14px;
 }
 
-.favorite-section {
-    flex: 2;
-}
-
 .page-title {
     font-size: 24px;
     font-weight: bold;
@@ -275,9 +270,10 @@
 }
 
 .shop-card {
+    width: 100%;
+    max-width: 300px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    width: 300px;
     overflow: hidden;
 }
 
@@ -324,20 +320,54 @@
     cursor: pointer;
 }
 
-.empty-message {
-    color: #666;
-}
-
-.favorite-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
 .favorite-button--active .favorite-icon {
     color: red;
 }
 
 .favorite-icon {
     font-size: 24px;
+}
+
+.empty-message {
+    color: #666;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .mypage-layout {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+
+    .favorite-section {
+        flex: 1;
+        padding-left: 20px;
+    }
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 767px) {
+    .mypage-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .reservation-section,
+    .favorite-section {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .favorites-grid {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .page-title,
+    .section-title {
+        font-size: 20px;
+    }
+    .shop-name {
+        font-size: 16px;
+    }
 }
