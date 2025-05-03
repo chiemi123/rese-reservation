@@ -18,18 +18,19 @@
     <header>
         <div class="header__left">
             <!-- ハンバーガーメニュー -->
-            <div class="header__icon">
-                <input id="drawer__input" class="drawer__hidden" type="checkbox">
-                <label for="drawer__input" class="drawer__open"><span></span></label>
+            <div class="header__icon" id="menuToggle">
+                <div class="drawer__open">
+                    <span></span>
+                </div>
 
-                <!-- 管理者メニュー -->
-                <nav class="nav__content">
+                <!-- メニュー表示内容 -->
+                <nav class="nav__content" id="sideMenu">
                     <ul class="nav__list">
                         <li class="nav__item">
                             <a class="nav__item-link" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__item-link" href="{{ route('admin.owners.index') }}">店舗代表者一覧</a>
+                            <a class="nav__item-link" href="{{ route('admin.owners.index') }}">Shop Owners</a>
                         </li>
                         @auth
                         <li class="nav__item">
@@ -72,6 +73,24 @@
 
         @yield('content')
     </main>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const sideMenu = document.getElementById('sideMenu');
+
+        if (window.innerWidth < 768) {
+            menuToggle.addEventListener('click', () => {
+                sideMenu.classList.toggle('active');
+            });
+
+            sideMenu.addEventListener('click', (e) => {
+                if (e.target.classList.contains('nav__item-link')) {
+                    sideMenu.classList.remove('active');
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>
