@@ -13,7 +13,9 @@ class StoreOwnerRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $user = \App\Models\User::with('roles')->find(auth()->id());
+
+        return $user && $user->roles && $user->hasRole('admin');
     }
 
     /**
