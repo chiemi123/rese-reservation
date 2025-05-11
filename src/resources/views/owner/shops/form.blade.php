@@ -99,8 +99,6 @@
             <img src="{{ asset('storage/' . $shop->image) }}" alt="現在の画像" class="shop-form__image-preview">
             @endif
         </div>
-        @else
-        <p>画像は登録されていません</p>
         @endif
         <input id="image" type="file" name="image">
         @error('image')
