@@ -10,7 +10,6 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\Admin\AdminReservationController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -123,7 +122,6 @@ Route::middleware(['auth:admin', 'role.admin'])->prefix('admin')->group(function
     Route::get('/owners/create', [OwnerController::class, 'create'])->name('admin.owners.create');
     Route::post('/owners', [OwnerController::class, 'store'])->name('admin.owners.store');
     Route::delete('/owners/{owner}', [OwnerController::class, 'destroy'])->name('admin.owners.destroy');
-    Route::get('/admin/reservations/unpaid', [AdminReservationController::class, 'unpaid'])->name('admin.reservations.unpaid');
 });
 
 // 店舗代表者のログイン処理

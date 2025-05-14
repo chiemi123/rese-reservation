@@ -62,16 +62,26 @@
     </header>
 
     <main>
+        {{-- 共通メッセージ表示エリア --}}
         <div class="flash-message-wrapper">
+            {{-- 手動でフラッシュした成功メッセージ --}}
             @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
             @endif
 
+            {{-- 手動でフラッシュしたエラーメッセージ --}}
             @if (session('error'))
             <div class="alert alert-danger">
-                <ul>
+                {{ session('error') }}
+            </div>
+            @endif
+
+            {{-- バリデーションエラー一覧 --}}
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                     @endforeach
