@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReservationConfirmed;
 use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -15,10 +17,20 @@ class ReservationController extends Controller
     public function store(ReservationRequest $request)
     {
         $data = $request->validated();
-        $data['user_id'] = Auth::id();
 
         // 日付と時間を結合して reserved_at に設定
         $data['reserved_at'] = Carbon::createFromFormat('Y-m-d H:i', $data['date'] . ' ' . $data['time']);
+
+        // 同じ店舗・同じ日時にすでに予約があるかチェック
+        $exists = Reservation::where('shop_id', $data['shop_id'])
+            ->where('reserved_at', $data['reserved_at'])
+            ->exists();
+
+        if ($exists) {
+            return back()->withErrors(['reserved_at' => 'この日時はすでに予約されています'])->withInput();
+        }
+
+        $data['user_id'] = Auth::id();
 
         // カラム名の整合性を取る
         $data['number_of_people'] = $data['number'];
@@ -26,7 +38,12 @@ class ReservationController extends Controller
         // 不要なキーは削除（任意）
         unset($data['date'], $data['time'], $data['number']);
 
-        Reservation::create($data);
+        // 予約データを保存し、変数に格納
+        $reservation = Reservation::create($data);
+
+        // ここでQR付きメール送信
+        $user = Auth::user();
+        Mail::to($user->email)->send(new ReservationConfirmed($user, $reservation));
 
         return redirect()->route('reservation.thanks');
     }
@@ -71,6 +88,7 @@ class ReservationController extends Controller
         $signedUrl = URL::signedRoute('reservation.confirm', ['reservation' => $reservation->id]);
 
         // QRコードにサイン付きURLを入れる
+        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $qr */
         $qr = QrCode::size(200)->generate($signedUrl);
 
         return view('user.qrcode', compact('qr', 'reservation'));
