@@ -1,4 +1,8 @@
-@extends('layouts.app') {{-- レイアウトを継承 --}}
+@extends('layouts.app')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/auth/verify-email.css') }}">
+@endsection
 
 @section('content')
 <div class="email-verification">
@@ -10,19 +14,25 @@
     </p>
 
     @if (session('status') == 'verification-link-sent')
-        <div class="email-verification__message">
-            新しい確認リンクをメールアドレスに送信しました！
-        </div>
+    <div class="email-verification__message">
+        新しい確認リンクをメールアドレスに送信しました！
+    </div>
     @endif
 
-    <form method="POST" action="{{ route('verification.send') }}" style="display: inline;">
+    @if (session('message'))
+    <div class="email-verification__message">
+        {{ session('message') }}
+    </div>
+    @endif
+
+    <form method="POST" action="{{ route('verification.send') }}">
         @csrf
-        <button type="submit" class="btn btn--primary">確認メールを再送信</button>
+        <button type="submit" class="btn resend-verification-button">確認メールを再送信</button>
     </form>
 
-    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+    <form method="POST" action="{{ route('logout') }}">
         @csrf
-        <button type="submit" class="btn btn--link">ログアウト</button>
+        <button type="submit" class="btn logout-button">ログアウト</button>
     </form>
 </div>
 @endsection

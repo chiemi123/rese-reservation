@@ -10,22 +10,32 @@
         <h2>Registrotion</h2>
     </div>
 
+    @if ($errors->any())
+    <div class="form__errors">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li style="color:red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <form class="form" method="POST" action="{{ route('register') }}">
         @csrf
 
         <div class="form__group">
             <span class="input-icon"><i class="material-icons">person</i></span>
-            <input type="text" name="name" value="{{ old('name') }}" placeholder="Username" required>
+            <input type="text" name="name" value="{{ old('name') }}" placeholder="Username">
         </div>
 
         <div class="input-group">
             <span class="input-icon"><i class="material-icons">email</i></span>
-            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" required>
+            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email">
         </div>
 
         <div class="input-group">
             <span class="input-icon"><i class="material-icons">lock</i></span>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Password">
         </div>
 
         <div class="form__button">

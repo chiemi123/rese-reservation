@@ -1,0 +1,77 @@
+.reservation-done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.reservation-done__card {
+    background-color: #ffffff;
+    width: 450px;
+    height: 270px;
+    padding: 70px 32px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.reservation-done__message {
+    font-size: 25px;
+    margin-bottom: 30px;
+    color: #555;
+    font-weight: 500;
+}
+
+.reservation-done__button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3366ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.reservation-done__button:hover {
+    background-color: #3366ff;
+}
+
+@media screen and (max-width: 768px) {
+    .reservation-done__card {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .reservation-done__message {
+        font-size: 18px;
+    }
+
+    .reservation-done__button {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .reservation-done__card {
+        width: 90%;
+        max-width: 270px;
+        padding: 30px 16px;
+        height: auto;
+    }
+
+    .reservation-done__message {
+        font-size: 16px;
+    }
+
+    .reservation-done__button {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+    .reservation-done__button {
+        font-size: 10px;
+    }
+}

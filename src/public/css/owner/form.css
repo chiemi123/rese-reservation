@@ -1,0 +1,210 @@
+/* ---------- タイトル ---------- */
+.page-title {
+    text-align: center;
+    color: #555;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* ---------- フォーム ---------- */
+.shop-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- 各フォームグループ ---------- */
+.shop-form__group {
+    margin-bottom: 24px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* ---------- ラベル ---------- */
+.shop-form__group label {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #555;
+    text-align: left;
+}
+
+/* ---------- 入力フィールド ---------- */
+.shop-form__group input[type="text"],
+.shop-form__group input[type="file"],
+.shop-form__group select,
+.shop-form__group textarea {
+    width: 100%;
+    height: 48px;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.shop-form__group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.shop-form__group input:focus,
+.shop-form__group select:focus,
+.shop-form__group textarea:focus {
+    border-color: #3366ff;
+    outline: none;
+}
+
+/* ---------- セレクトボックスラッパー ---------- */
+.shop-form__select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.shop-form__select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 12px 36px 12px 14px;
+}
+
+.shop-form__select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #555;
+    font-size: 16px;
+}
+
+/* ---------- ボタン ---------- */
+.shop-form__submit-btn {
+    width: 100%;
+    max-width: 200px;
+    margin-top: 24px;
+    background-color: #3366ff;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.shop-form__submit-btn:hover {
+    background-color: #264fcc;
+}
+
+/* ---------- エラーメッセージ ---------- */
+.shop-form__error {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* ---------- 画像プレビュー ---------- */
+.shop-form__image-preview {
+    display: block;
+    margin-top: 10px;
+    max-width: 200px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* ========== レスポンシブ対応 ========== */
+
+/* ▼ タブレット（〜768px） */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0 10px;
+    }
+
+    .page-title {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+
+    .shop-form {
+        padding: 24px;
+        margin: 0 auto;
+    }
+
+    .shop-form__group {
+        max-width: 100%;
+    }
+
+    .shop-form__group input,
+    .shop-form__group select,
+    .shop-form__group textarea {
+        font-size: 14px;
+        height: 44px;
+        padding: 10px;
+    }
+
+    .shop-form__group textarea {
+        height: 100px;
+    }
+
+    .shop-form__submit-btn {
+        font-size: 15px;
+        padding: 12px 20px;
+        max-width: 180px;
+    }
+}
+
+/* ▼ スマホ（〜375px） */
+@media screen and (max-width: 375px) {
+    body {
+        padding: 0 10px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    .shop-form {
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    .shop-form__group label {
+        font-size: 14px;
+    }
+
+    .shop-form__group input,
+    .shop-form__group select,
+    .shop-form__group textarea {
+        font-size: 13px;
+        padding: 8px;
+        height: 42px;
+    }
+
+    .shop-form__group textarea {
+        height: 90px;
+    }
+
+    .shop-form__submit-btn {
+        font-size: 14px;
+        padding: 10px 16px;
+        max-width: 100%;
+    }
+
+    .shop-form__image-preview {
+        max-width: 100%;
+    }
+}

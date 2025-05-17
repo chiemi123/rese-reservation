@@ -1,0 +1,138 @@
+.owner-reservations {
+    padding: 24px;
+}
+
+.owner-reservations__header {
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* タイトル */
+.owner-reservations__title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 16px;
+}
+
+/* フィルタフォーム */
+.owner-reservations__filter-form {
+    margin-bottom: 16px;
+}
+
+.owner-reservations__filter-label {
+    margin-right: 8px;
+}
+
+.owner-reservations__filter-select {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+@media (min-width: 768px) {
+    .owner-reservations__card-shop-title {
+        display: none;
+    }
+
+    .owner-reservations__table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-top: 12px;
+
+        max-width: 960px; /* 最大幅を指定 */
+        margin-left: auto; /* 中央寄せ */
+        margin-right: auto;
+    }
+
+    .owner-reservations__table {
+        min-width: 600px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .owner-reservations__header-cell {
+        background-color: #3366ff;
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 16px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    .owner-reservations__row {
+        border-bottom: 1px solid #ddd;
+        background-color: #ffffff;
+    }
+
+    .owner-reservations__cell {
+        padding: 12px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .owner-reservations__cell--empty {
+        text-align: center;
+        color: #888;
+        font-size: 14px;
+    }
+
+    .owner-reservations__row--shop {
+        background-color: #f0f4f8;
+    }
+
+    .owner-reservations__cell--shop {
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+        border: 1px solid #ddd;
+        padding: 16px 12px;
+    }
+
+    /* スマホ用カードは非表示に */
+    .owner-reservations__card {
+        display: none;
+    }
+}
+
+/* ===== スマホビュー用（767px以下） ===== */
+@media (max-width: 767px) {
+    /* テーブルは非表示に */
+    .owner-reservations__table-wrapper {
+        display: none;
+    }
+
+    .owner-reservations__card {
+        display: block;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        color: #555;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
+    }
+
+    .owner-reservations__card-row {
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .owner-reservations__card-label {
+        font-weight: bold;
+        display: inline-block;
+        width: 100px;
+    }
+
+    .owner-reservations__card-shop-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 16px;
+        margin-bottom: 8px;
+        color: #555;
+    }
+}

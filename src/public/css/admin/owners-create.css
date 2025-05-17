@@ -1,0 +1,134 @@
+.owner-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.owner-form__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #555;
+    text-align: center;
+}
+
+.owner-form__group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.owner-form__label,
+.owner-form__input {
+    width: 80%;
+    max-width: 300px;
+}
+
+.owner-form__label {
+    text-align: left;
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+.owner-form__input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.owner-form__input:focus {
+    border-color: #3366ff;
+    box-shadow: 0 0 0 3px rgba(51, 102, 255, 0.1);
+    outline: none;
+}
+
+.owner-form__submit-wrapper {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.owner-form__submit {
+    display: inline-block;
+    width: 100%;
+    max-width: 180px;
+    background-color: #3366ff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.owner-form__submit:hover {
+    background-color: #2b5ad7;
+}
+
+.owner-list__delete-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.owner-form__back {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.owner-form__back-button {
+    display: inline-block;
+    width: 100%;
+    max-width: 180px;
+    background-color: #6c757d;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.owner-form__back-button:hover {
+    background-color: #5a6268;
+}
+
+@media screen and (max-width: 768px) {
+    .owner-form {
+        padding: 20px 20px;
+    }
+
+    .owner-form__label,
+    .owner-form__input {
+        width: 90%;
+        max-width: none;
+    }
+
+    .owner-form__submit,
+    .owner-form__back-button {
+        width: 60%;
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .owner-form {
+        width: 90%; /* 画面幅の90%だけ使う */
+        max-width: 360px; /* 最大でも360pxまでにする */
+        padding: 16px;
+        margin: 0 auto;
+    }
+}
