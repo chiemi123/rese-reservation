@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ShopRequest;
 
 
@@ -29,13 +30,12 @@ class ShopController extends Controller
 
         // 画像が送信されていれば保存処理を追加
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('shops', 'public');
+            $disk = env('FILESYSTEM_DRIVER', 'public');
+            $imagePath = $request->file('image')->store('shops', $disk);
             $shop->image = $imagePath;
         }
 
         $shop->save();
-
-
 
         return redirect()->route('owner.dashboard')->with('success', '店舗を登録しました');
     }
@@ -54,12 +54,13 @@ class ShopController extends Controller
         $shop->fill($request->validated());
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('shops', 'public');
+            $disk = env('FILESYSTEM_DRIVER', 'public');
+            $imagePath = $request->file('image')->store('shops', $disk);
             $shop->image = $imagePath;
         }
 
         $shop->save();
 
-        return redirect()->route('owner.shops.index')->with('message', '店舗情報を更新しました');
+        return redirect()->route('owner.dashboard')->with('message', '店舗情報を更新しました');
     }
 }
