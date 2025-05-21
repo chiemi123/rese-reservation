@@ -27,16 +27,16 @@
                 <nav class="nav__content" id="sideMenu">
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a class="nav__item-link" href="{{ route('owner.dashboard') }}">Owner Dashboard</a>
+                            <a class="nav__link" href="{{ route('owner.dashboard') }}">Owner Dashboard</a>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__item-link" href="{{ route('owner.shops.create') }}">Register Store Info</a>
+                            <a class="nav__link" href="{{ route('owner.shops.create') }}">Register Store Info</a>
                         </li>
                         @auth
                         <li class="nav__item">
                             <form method="POST" action="{{ route('owner.logout') }}">
                                 @csrf
-                                <button type="submit" class="nav__item-link logout-btn">Logout</button>
+                                <button type="submit" class="nav__button">Logout</button>
                             </form>
                         </li>
                         @endauth
@@ -83,7 +83,7 @@
             });
 
             sideMenu.addEventListener('click', (e) => {
-                if (e.target.classList.contains('nav__item-link')) {
+                if (e.target.classList.contains('nav__link')) {
                     sideMenu.classList.remove('active');
                 }
             });

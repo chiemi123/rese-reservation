@@ -94,8 +94,8 @@
     margin: 20px 0;
 }
 
-.nav__item-link,
-.logout-btn {
+.nav__link,
+.nav__button {
     font-size: 1.2rem;
     text-decoration: none;
     color: #3366ff;
@@ -104,8 +104,8 @@
     cursor: pointer;
 }
 
-.logout-btn:hover,
-.nav__item-link:hover {
+.nav__link:hover,
+.nav__button:hover {
     text-decoration: underline;
 }
 
