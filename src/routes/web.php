@@ -72,14 +72,17 @@ Route::get('/done', function () {
 
 // メール認証待ちページ
 Route::get('/email/verify', function () {
-    return view('auth.verify-email'); // メール送信しました的な画面
+    return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
 // メール内リンクからのアクセス（認証完了処理）
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill(); // 認証完了処理
-    return redirect('/thanks'); // 認証完了後にサンクスページ
-})->middleware(['auth', 'signed'])->name('verification.verify');
+    if ($request->user()->hasVerifiedEmail()) {
+        return redirect('/thanks');
+    }
+    $request->fulfill();
+    return redirect('/thanks');
+})->middleware(['signed'])->name('verification.verify');
 
 // 認証メールの再送信ルート
 Route::post('/email/verification-notification', function (Request $request) {
