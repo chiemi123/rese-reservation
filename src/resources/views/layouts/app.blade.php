@@ -27,7 +27,7 @@
                 <nav class="nav__content" id="sideMenu">
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a class="nav__item-link" href="/">Home</a>
+                            <a class="nav__link" href="/">Home</a>
                         </li>
 
                         @auth
@@ -35,18 +35,18 @@
                         <li class="nav__item">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="nav__item-link logout-btn">Logout</button>
+                                <button type="submit" class="nav__button">Logout</button>
                             </form>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__item-link" href="/mypage">Mypage</a>
+                            <a class="nav__link" href="/mypage">Mypage</a>
                         </li>
                         @else
                         <li class="nav__item">
-                            <a class="nav__item-link" href="/register">Registration</a>
+                            <a class="nav__link" href="/register">Registration</a>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__item-link" href="/login">Login</a>
+                            <a class="nav__link" href="/login">Login</a>
                         </li>
                         @endauth
                     </ul>
