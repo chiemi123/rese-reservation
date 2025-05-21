@@ -22,16 +22,6 @@ class UserLoginController extends Controller
         if (Auth::guard('web')->attempt($credentials, $request->boolean('remember'))) {
             $user = Auth::guard('web')->user();
 
-            // ✅ メール認証チェック
-            /** @var \App\Models\User $user */
-            if (!$user->hasVerifiedEmail()) {
-                Auth::guard('web')->logout();
-
-                return back()->withErrors([
-                    'email' => 'メールアドレスの確認がまだ完了していません。',
-                ])->withInput();
-            }
-
             // ✅ 管理者ユーザーはブロック（一般用画面ではログイン不可）
             if ($user->hasRole('admin') || $user->hasRole('shop_owner')) {
                 Auth::guard('web')->logout();
