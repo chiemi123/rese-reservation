@@ -25,7 +25,7 @@ class LoginController extends Controller
 
             // ロールが「admin」かチェック
             if ($user->hasRole('admin')) {
-                return redirect()->intended('/admin/dashboard');
+                return redirect()->route('admin.dashboard');
             } else {
                 Auth::guard('admin')->logout(); // ログアウト処理（安全）
                 return redirect()->route('admin.login')->withErrors([

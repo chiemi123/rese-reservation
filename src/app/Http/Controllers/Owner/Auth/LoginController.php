@@ -24,7 +24,7 @@ class LoginController extends Controller
             $user = Auth::guard('owner')->user();
 
             if ($user->hasRole('shop_owner')) {
-                return redirect()->intended('/owner/dashboard');
+                return redirect()->route('owner.dashboard');
             } else {
                 Auth::guard('owner')->logout();
                 return redirect()->route('owner.login')->withErrors(['email' => '店舗代表者アカウントではありません']);

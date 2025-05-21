@@ -92,11 +92,15 @@
         @if (!empty($shop->image))
         <div>
             @if (Str::startsWith($shop->image, ['http://', 'https://']))
-            {{-- 外部URLの場合 --}}
             <img src="{{ $shop->image }}" alt="現在の画像" class="shop-form__image-preview">
             @else
-            {{-- ローカルstorageの場合 --}}
-            <img src="{{ asset('storage/' . $shop->image) }}" alt="現在の画像" class="shop-form__image-preview">
+            @php
+            $disk = env('FILESYSTEM_DRIVER', 'public');
+            $url = $disk === 's3'
+            ? Storage::disk('s3')->url($shop->image)
+            : asset('storage/' . $shop->image);
+            @endphp
+            <img src="{{ $url }}" alt="現在の画像" class="shop-form__image-preview">
             @endif
         </div>
         @endif
