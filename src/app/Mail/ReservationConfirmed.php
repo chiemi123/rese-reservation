@@ -21,11 +21,13 @@ class ReservationConfirmed extends Mailable
     public $user;
     public $reservation;
     public $qrCodeHtml;
+    public $isUpdate;
 
-    public function __construct($user, $reservation)
+    public function __construct($user, $reservation, $isUpdate = false)
     {
         $this->user = $user;
         $this->reservation = $reservation;
+        $this->isUpdate = $isUpdate;
 
         // QRコードトークンがなければ作成
         $qrCode = $reservation->qrCode ?? $reservation->qrCode()->create([
@@ -50,6 +52,8 @@ class ReservationConfirmed extends Mailable
                 'userName' => $this->user->name,
                 'reservationTime' => $this->reservation->reserved_at->translatedFormat('Y年m月d日 H:i'),
                 'qrCodeHtml' => $this->qrCodeHtml,
+                'qrUrl' => route('reservations.qr', ['id' => $this->reservation->id]),
+                'isUpdate' => $this->isUpdate,
             ]);
     }
 }

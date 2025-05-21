@@ -75,14 +75,18 @@ class ReservationController extends Controller
             'number_of_people' => $validated['number'],
         ]);
 
+        Mail::to(Auth::user()->email)->send(new ReservationConfirmed(Auth::user(), $reservation, true));
+
         return redirect()->route('user.mypage')->with('message', '予約内容を変更しました。');
     }
 
     public function showQr($id)
     {
-        $reservation = Reservation::where('id', $id)
-            ->where('user_id', Auth::id())
-            ->firstOrFail();
+        $reservation = Reservation::findOrFail($id);
+
+        if ($reservation->user_id !== Auth::id()) {
+            abort(403); // 明示的にアクセス拒否
+        }
 
         // サイン付きURLを発行（例: /reservations/confirm/123?signature=...）
         $signedUrl = URL::signedRoute('reservation.confirm', ['reservation' => $reservation->id]);
