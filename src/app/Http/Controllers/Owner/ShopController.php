@@ -30,7 +30,7 @@ class ShopController extends Controller
 
         // 画像が送信されていれば保存処理を追加
         if ($request->hasFile('image')) {
-            $disk = env('FILESYSTEM_DRIVER', 'public');
+            $disk = config('filesystems.default'); // S3かローカルかを環境変数で自動判断
             $imagePath = $request->file('image')->store('shops', $disk);
             $shop->image = $imagePath;
         }
@@ -54,7 +54,7 @@ class ShopController extends Controller
         $shop->fill($request->validated());
 
         if ($request->hasFile('image')) {
-            $disk = env('FILESYSTEM_DRIVER', 'public');
+            $disk = config('filesystems.default'); // S3かローカルかを環境変数で自動判断
             $imagePath = $request->file('image')->store('shops', $disk);
             $shop->image = $imagePath;
         }
