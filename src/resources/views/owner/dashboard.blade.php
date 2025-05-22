@@ -23,16 +23,26 @@
     @if ($shops->isEmpty())
     <p>まだ店舗が登録されていません。</p>
     @else
+
+    @php
+    use Illuminate\Support\Str;
+    use Illuminate\Support\Facades\Storage;
+    $disk = config('filesystems.default');
+    @endphp
+
     <div class="shop-grid">
         @foreach ($shops as $shop)
         <div class="shop-card">
             {{-- 画像 --}}
             @if ($shop->image)
             @if (Str::startsWith($shop->image, ['http://', 'https://']))
-            {{-- 外部URLの場合 --}}
+            {{-- 外部URL --}}
             <img src="{{ $shop->image }}" alt="{{ $shop->name }}" class="shop-image">
+            @elseif ($disk === 's3')
+            {{-- S3の場合 --}}
+            <img src="{{ Storage::disk('s3')->url($shop->image) }}" alt="{{ $shop->name }}" class="shop-image">
             @else
-            {{-- ローカルのstorageに保存されている場合 --}}
+            {{-- ローカルの場合 --}}
             <img src="{{ asset('storage/' . $shop->image) }}" alt="{{ $shop->name }}" class="shop-image">
             @endif
             @else
