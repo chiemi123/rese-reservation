@@ -9,9 +9,9 @@
 @section('content')
 <div class="dashboard-container">
 
-    <h2 class="dashboard-title">ようこそ、{{ $user->name }} さん！</h2>
+    <h1 class="dashboard-title">ようこそ、{{ $user->name }} さん！</h1>
 
-    <h3 class="dashboard-section-title">ダッシュボード概要</h3>
+    <h2 class="dashboard-section-title">ダッシュボード概要</h2>
     <ul class="dashboard-links">
         <li><a href="{{ route('owner.shops.create') }}">店舗情報を登録</a></li>
         <li><a href="{{ route('owner.reservations.index') }}">予約一覧を見る</a></li>
@@ -25,8 +25,6 @@
     @else
 
     @php
-    use Illuminate\Support\Str;
-    use Illuminate\Support\Facades\Storage;
     $disk = config('filesystems.default');
     @endphp
 
@@ -34,19 +32,17 @@
         @foreach ($shops as $shop)
         <div class="shop-card">
             {{-- 画像 --}}
-            @if ($shop->image)
-            @if (Str::startsWith($shop->image, ['http://', 'https://']))
-            {{-- 外部URL --}}
-            <img src="{{ $shop->image }}" alt="{{ $shop->name }}" class="shop-image">
-            @elseif ($disk === 's3')
-            {{-- S3の場合 --}}
-            <img src="{{ Storage::disk('s3')->url($shop->image) }}" alt="{{ $shop->name }}" class="shop-image">
-            @else
-            {{-- ローカルの場合 --}}
-            <img src="{{ asset('storage/' . $shop->image) }}" alt="{{ $shop->name }}" class="shop-image">
-            @endif
-            @else
+            @if (!$shop->image)
             <div class="shop-image-placeholder">No Image</div>
+            {{-- 外部URL --}}
+            @elseif (\Illuminate\Support\Str::startsWith($shop->image, ['http://', 'https://']))
+            <img src="{{ $shop->image }}" alt="{{ $shop->name }}" class="shop-image">
+            {{-- S3の場合 --}}
+            @elseif ($disk === 's3')
+            <img src="{{ \Illuminate\Support\Facades\Storage::disk('s3')->url($shop->image) }}" alt="{{ $shop->name }}" class="shop-image">
+            {{-- ローカルの場合 --}}
+            @else
+            <img src="{{ asset('storage/' . $shop->image) }}" alt="{{ $shop->name }}" class="shop-image">
             @endif
 
             {{-- 店舗情報 --}}
