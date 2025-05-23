@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use App\Mail\ReservationReminder;
 use Carbon\Carbon;
 
@@ -42,6 +43,8 @@ class SendReservationReminders extends Command
      */
     public function handle()
     {
+        Log::info('send-reminders コマンドが実行されました');
+
         $tomorrow = Carbon::tomorrow()->startOfDay();
         $endOfTomorrow = Carbon::tomorrow()->endOfDay();
 
@@ -50,8 +53,15 @@ class SendReservationReminders extends Command
             ->with('user', 'shop')
             ->get();
 
+        if ($reservations->count()) {
+            Log::info('明日の予約あり：' . $reservations->count() . ' 件');
+        } else {
+            Log::info('明日の予約なし：送信スキップ');
+        }
+
         foreach ($reservations as $reservation) {
             Mail::to($reservation->user->email)->queue(new ReservationReminder($reservation));
+            Log::info('リマインダー送信：予約ID ' . $reservation->id);
         }
 
         $this->info('リマインダー送信完了');
