@@ -61,6 +61,6 @@ class ShopController extends Controller
 
         $shop->save();
 
-        return redirect()->route('owner.dashboard')->with('message', '店舗情報を更新しました');
+        return redirect()->route('owner.dashboard')->with('success', '店舗情報を更新しました');
     }
 }

@@ -53,13 +53,30 @@
     </header>
 
     <main>
+        {{-- 共通メッセージ表示エリア --}}
         <div class="flash-message-wrapper">
+            {{-- 手動でフラッシュした成功メッセージ --}}
             @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
             @endif
 
+            {{-- 一般的な成功メッセージ用（"message"キー対応） --}}
+            @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @endif
+
+            {{-- 手動でフラッシュしたエラーメッセージ --}}
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
+
+            {{-- バリデーションエラー一覧 --}}
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
