@@ -47,7 +47,7 @@
             @endif
 
             <div class="shop-card__body">
-                <h3 class="shop-card__title">{{ $shop->name }}</h3>
+                <div class="shop-card__title">{{ $shop->name }}</div>
                 <p class="shop-card__tags">#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
                 <div class="shop-card__footer">
                     <a href="{{ route('shops.show', $shop->id) }}" class="shop-card__link">詳しくみる</a>

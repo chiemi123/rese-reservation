@@ -24,6 +24,12 @@
         </li>
     </ul>
 
+    <div class="dashboard__link-wrapper">
+        <a href="{{ route('admin.owners.index') }}" class="dashboard__link-button">
+            ➡ 店舗代表者一覧へ
+        </a>
+    </div>
+
     <h2 class="dashboard__subtitle">新規登録ユーザー（最近）</h2>
     <ul class="dashboard__user-list">
         @foreach ($newUsers as $user)

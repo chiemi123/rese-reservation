@@ -53,6 +53,7 @@
 
     <main>
         {{-- 共通メッセージ表示エリア --}}
+        @if (!isset($suppressFlashMessages) || !$suppressFlashMessages)
         <div class="flash-message-wrapper">
             {{-- 手動でフラッシュした成功メッセージ --}}
             @if (session('success'))
@@ -86,6 +87,7 @@
             </div>
             @endif
         </div>
+        @endif
 
         @yield('content')
     </main>

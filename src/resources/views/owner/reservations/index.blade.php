@@ -8,7 +8,7 @@
 <div class="owner-reservations">
 
     <div class="owner-reservations__header">
-        <h2 class="owner-reservations__title">予約一覧</h2>
+        <h1 class="owner-reservations__title">予約一覧</h1>
 
         <form method="GET" action="{{ route('owner.reservations.index') }}" class="owner-reservations__filter-form">
             <label for="shop_id" class="owner-reservations__filter-label">店舗を選択：</label>

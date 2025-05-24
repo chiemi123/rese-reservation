@@ -112,7 +112,7 @@
 /* ---------- エラーメッセージ ---------- */
 .shop-form__error {
     color: red;
-    font-size: 13px;
+    font-size: 16px;
     margin-top: 4px;
 }
 

@@ -57,6 +57,25 @@
     font-weight: bold;
 }
 
+.dashboard__link-wrapper {
+    margin: 20px 0;
+}
+
+.dashboard__link-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #555;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.dashboard__link-button:hover {
+    background-color: #00bfff;
+}
+
 .dashboard__subtitle {
     font-size: 20px;
     font-weight: 600;
@@ -87,7 +106,7 @@
 }
 
 .dashboard__user-item:hover {
-    background-color: #5c88ff;
+    background-color: #00bfff;
 }
 
 /* タブレット対応（〜768px） */

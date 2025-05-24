@@ -10,16 +10,6 @@
         <h2>Registrotion</h2>
     </div>
 
-    @if ($errors->any())
-    <div class="form__errors">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li style="color:red;">{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-
     <form class="form" method="POST" action="{{ route('register') }}">
         @csrf
 
