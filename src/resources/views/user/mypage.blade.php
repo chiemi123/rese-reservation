@@ -9,11 +9,6 @@
 
     <!-- ユーザー名 -->
     <h1 class="page-title">{{ Auth::user()->name }}さん</h1>
-    @if (session('message'))
-    <div class="alert alert-success">
-        ✅ {{ session('message') }}
-    </div>
-    @endif
 
     @if (request('status') === 'success')
     <div class="alert alert-success">
@@ -65,13 +60,6 @@
                     @endif
                 </div>
 
-                @if ($errors->any())
-                <ul class="form-errors">
-                    @foreach ($errors->all() as $error)
-                    <li class="form-error">{{ $error }}</li>
-                    @endforeach
-                </ul>
-                @endif
                 {{-- ▼ レビュー表示トグルボタン --}}
                 <button type="button" onclick="toggleForm('review-form-{{ $reservation->id }}')" class="toggle-button">
                     レビューを書く
@@ -167,7 +155,7 @@
             <div class="favorites-grid">
                 @forelse ($favoriteShops as $shop)
                 <div class="shop-card">
-                    <img src="{{ $shop->image ?? '/images/default.jpg' }}" alt="{{ $shop->name }}" class="shop-image">
+                    <img src="{{ $shop->image_url ?? '/images/default.jpg' }}" alt="{{ $shop->name }}" class="shop-card__image">
 
                     <div class="shop-details">
                         <h4 class="shop-name">{{ $shop->name }}</h4>
