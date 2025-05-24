@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Shop extends Model
 {
@@ -46,5 +48,20 @@ class Shop extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) {
+            return null;
+        }
+
+        // 外部URLか？
+        if (Str::startsWith($this->image, ['http://', 'https://'])) {
+            return $this->image;
+        }
+
+        // S3またはローカルストレージ対応
+        return Storage::disk(config('filesystems.default'))->url($this->image);
     }
 }

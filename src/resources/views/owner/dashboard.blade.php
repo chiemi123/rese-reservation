@@ -31,18 +31,12 @@
     <div class="shop-grid">
         @foreach ($shops as $shop)
         <div class="shop-card">
+
             {{-- 画像 --}}
-            @if (!$shop->image)
+            @if (!$shop->image_url)
             <div class="shop-image-placeholder">No Image</div>
-            {{-- 外部URL --}}
-            @elseif (\Illuminate\Support\Str::startsWith($shop->image, ['http://', 'https://']))
-            <img src="{{ $shop->image }}" alt="{{ $shop->name }}" class="shop-image">
-            {{-- S3の場合 --}}
-            @elseif ($disk === 's3')
-            <img src="{{ \Illuminate\Support\Facades\Storage::disk('s3')->url($shop->image) }}" alt="{{ $shop->name }}" class="shop-image">
-            {{-- ローカルの場合 --}}
             @else
-            <img src="{{ asset('storage/' . $shop->image) }}" alt="{{ $shop->name }}" class="shop-image">
+            <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}" class="shop-image">
             @endif
 
             {{-- 店舗情報 --}}
