@@ -71,6 +71,13 @@
             </div>
             @endif
 
+            {{-- 一般的な成功メッセージ用（"message"キー対応） --}}
+            @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @endif
+
             {{-- 手動でフラッシュしたエラーメッセージ --}}
             @if (session('error'))
             <div class="alert alert-danger">
@@ -81,7 +88,7 @@
             {{-- バリデーションエラー一覧 --}}
             @if ($errors->any())
             <div class="alert alert-danger">
-                <ul class="mb-0">
+                <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                     @endforeach
