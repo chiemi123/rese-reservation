@@ -1,3 +1,7 @@
+@php
+$suppressFlashMessages = true;
+@endphp
+
 @extends('layouts.owner')
 
 @section('css')
