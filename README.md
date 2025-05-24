@@ -283,6 +283,32 @@ http://localhost
 sudo chmod -R 777 *
 ```
 
+### ⚠️ Faker ライブラリについて（Seeder利用時）
+
+シーダーでダミーデータを生成するために、`fakerphp/faker` ライブラリが必要です。
+
+ローカル環境やテスト環境でシーダーを実行する際は、以下のいずれかで `fakerphp/faker` をインストールしてください：
+
+```
+composer install
+```
+
+または、明示的に追加するには：
+
+```
+composer require --dev fakerphp/faker
+```
+
+> 本番環境や `--no-dev` オプションを使っている場合は、以下のようなエラーが発生する可能性があります：
+
+
+```
+Class 'Faker\Factory' not found
+```
+
+この場合は `fakerphp/faker` がインストールされていないため、上記コマンドを参考に追加してください。
+
+
 ### **6.シーダーの実行**
 
 以下のコマンドでシーダーを実行します。
