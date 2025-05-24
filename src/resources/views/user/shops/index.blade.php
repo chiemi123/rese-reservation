@@ -40,7 +40,12 @@
     <div class="shop-list">
         @forelse ($shops as $shop)
         <div class="shop-card">
-            <img src="{{ $shop->image }}" class="shop-card__image" alt="{{ $shop->name }}">
+            @if (!$shop->image_url)
+            <div class="shop-image-placeholder">No Image</div>
+            @else
+            <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}" class="shop-card__image">
+            @endif
+
             <div class="shop-card__body">
                 <h3 class="shop-card__title">{{ $shop->name }}</h3>
                 <p class="shop-card__tags">#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>

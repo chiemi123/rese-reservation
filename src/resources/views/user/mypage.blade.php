@@ -8,7 +8,7 @@
 <div class="container">
 
     <!-- ユーザー名 -->
-    <h2 class="page-title">{{ Auth::user()->name }}さん</h2>
+    <h1 class="page-title">{{ Auth::user()->name }}さん</h1>
     @if (session('message'))
     <div class="alert alert-success">
         ✅ {{ session('message') }}
@@ -29,7 +29,7 @@
     <div class="mypage-layout">
         <!-- 予約状況 -->
         <section class="section reservation-section">
-            <h3 class="section-title">予約状況</h3>
+            <h2 class="section-title">予約状況</h2>
 
             @forelse ($reservations as $reservation)
             <div class="reservation-card">

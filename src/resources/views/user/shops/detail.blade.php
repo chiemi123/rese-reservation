@@ -9,15 +9,20 @@
     <div class="shop__detail">
         <div class="shop__header">
             <a href="{{ route('shops.index') }}" class="back-button">＜</a>
-            <h2 class="shop__name">{{ $shop->name }}</h2>
+            <h1 class="shop__name">{{ $shop->name }}</h1>
         </div>
-        <img src="{{ $shop->image }}" alt="{{ $shop->name }}" class="shop__image">
+
+        @if (!$shop->image_url)
+        <div class="shop-image-placeholder">No Image</div>
+        @else
+        <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}" class="shop__image">
+        @endif
 
         <p class="shop__tags">#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
         <p class="shop__description">{{ $shop->description }}</p>
 
         <div class="shop-reviews">
-            <h3 class="shop-reviews__title">レビュー一覧</h3>
+            <h2 class="shop-reviews__title">レビュー一覧</h2>
 
             @if ($shop->reviews->isEmpty())
             <p>まだレビューはありません。</p>
