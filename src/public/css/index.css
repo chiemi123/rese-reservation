@@ -35,7 +35,27 @@
     align-items: center;
     padding: 8px 12px;
     border-right: 1px solid #e0e0e0;
-    background-color: white;
+    background-color: #ffffff;
+}
+
+/* Safari対応のカスタム矢印 */
+.search-bar__item select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* カスタム矢印の追加 */
+.search-bar__item::after {
+    content: "▼"; /* Unicodeも可: "\25BC" */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #666;
+    pointer-events: none;
+    font-family: Arial, sans-serif;
 }
 
 /* 最後の区切り線なし */
