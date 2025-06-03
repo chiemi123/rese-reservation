@@ -46,8 +46,8 @@
 }
 
 /* カスタム矢印の追加 */
-.search-bar__item::after {
-    content: "▼"; /* Unicodeも可: "\25BC" */
+.search-bar__item:not(.search-bar__item--input)::after {
+    content: "⮟"; /* U+2B9F */
     position: absolute;
     right: 10px;
     top: 50%;

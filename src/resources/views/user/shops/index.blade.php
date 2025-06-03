@@ -16,7 +16,6 @@
                     <option value="{{ $area->id }}" {{ request('area') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
                     @endforeach
                 </select>
-                <span class="search-bar__arrow">⮟</span>
             </div>
 
             <div class="search-bar__item">
@@ -26,7 +25,6 @@
                     <option value="{{ $genre->id }}" {{ request('genre') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
                     @endforeach
                 </select>
-                <span class="search-bar__arrow">⮟</span>
             </div>
 
             <div class="search-bar__item search-bar__item--input">
