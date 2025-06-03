@@ -190,6 +190,8 @@
     pointer-events: none;
     color: #555;
     font-size: 16px;
+    font-family: Arial, sans-serif; /* Safariでの互換性 */
+    content: "\25BC";
 }
 
 /* 予約ボタン周り */
