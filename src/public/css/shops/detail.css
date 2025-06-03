@@ -190,7 +190,7 @@
     pointer-events: none;
     color: #555;
     font-size: 16px;
-    font-family: Arial, sans-serif; /* Safariでの互換性 */
+    font-family: "Noto Sans Symbols 2", Arial, sans-serif;
     content: "⮟";
 }
 
@@ -218,6 +218,21 @@
 
 .reservation-card__button:hover {
     background-color: #0033aa;
+}
+
+input[type="date"] {
+    appearance: auto;
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+    background-color: #fff;
+    color: #555;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    width: 100%;
+    max-width: 350px;
+    box-sizing: border-box;
 }
 
 /* レスポンシブ対応 */
