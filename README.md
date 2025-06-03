@@ -372,8 +372,8 @@ Fortify は `composer install` 実行時に自動でインストールされま�
 
 | ディレクトリ                      | 説明                               |
 | --------------------------------- | ---------------------------------- |
-| `storage/app/public/item_images/` | アップロードされた画像の保存場所   |
-| `public/storage/item_images/`     | Web アクセス用のシンボリックリンク |
+| `storage/app/public/shops/` | アップロードされた画像の保存場所   |
+| `public/storage/shops/`     | Web アクセス用のシンボリックリンク |
 
 シンボリックリンクの作成
 

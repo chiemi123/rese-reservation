@@ -28,11 +28,17 @@ class ShopController extends Controller
         $shop->fill($request->validated());
         $shop->owner_id = auth()->id(); // オーナーのIDを保存
 
-        // 画像が送信されていれば保存処理を追加
         if ($request->hasFile('image')) {
-            $disk = config('filesystems.default'); // S3かローカルかを環境変数で自動判断
-            $imagePath = $request->file('image')->store('shops', $disk);
-            $shop->image = $imagePath;
+            $disk = config('filesystems.default'); // local or s3
+            $path = $request->file('image')->store('shops', $disk);
+
+            if ($disk === 's3') {
+                // S3: 完全URLを取得
+                $shop->image = Storage::disk($disk)->url($path);
+            } else {
+                // ローカル: パスを表示用に変換
+                $shop->image = 'storage/' . $path;
+            }
         }
 
         $shop->save();
@@ -54,9 +60,16 @@ class ShopController extends Controller
         $shop->fill($request->validated());
 
         if ($request->hasFile('image')) {
-            $disk = config('filesystems.default'); // S3かローカルかを環境変数で自動判断
-            $imagePath = $request->file('image')->store('shops', $disk);
-            $shop->image = $imagePath;
+            $disk = config('filesystems.default'); // local or s3
+            $path = $request->file('image')->store('shops', $disk);
+
+            if ($disk === 's3') {
+                // S3: 完全URLを取得
+                $shop->image = Storage::disk($disk)->url($path);
+            } else {
+                // ローカル: パスを表示用に変換
+                $shop->image = 'storage/' . $path;
+            }
         }
 
         $shop->save();

@@ -94,18 +94,13 @@ $suppressFlashMessages = true;
     <div class="shop-form__group">
         <label for="image">店舗画像</label>
         @if (!empty($shop->image))
-        <div>
-            @if (Str::startsWith($shop->image, ['http://', 'https://']))
-            <img src="{{ $shop->image }}" alt="現在の画像" class="shop-form__image-preview">
-            @else
+        <div class="shop-form__image-wrapper">
             @php
-            $disk = env('FILESYSTEM_DRIVER', 'public');
-            $url = $disk === 's3'
-            ? Storage::disk('s3')->url($shop->image)
-            : asset('storage/' . $shop->image);
+            $imageUrl = Str::startsWith($shop->image, 'http')
+            ? $shop->image
+            : asset($shop->image); // ← 'storage/xxx.jpg' を前提としたURL生成
             @endphp
-            <img src="{{ $url }}" alt="現在の画像" class="shop-form__image-preview">
-            @endif
+            <img src="{{ $imageUrl }}" alt="現在の画像" class="shop-form__image-preview">
         </div>
         @endif
         <input id="image" type="file" name="image">

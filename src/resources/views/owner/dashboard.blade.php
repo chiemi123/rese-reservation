@@ -33,10 +33,13 @@
         <div class="shop-card">
 
             {{-- 画像 --}}
-            @if (!$shop->image_url)
+            @if (!$shop->image)
             <div class="shop-image-placeholder">No Image</div>
             @else
-            <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}" class="shop-image">
+            @php
+            $imageUrl = Str::startsWith($shop->image, 'http') ? $shop->image : asset($shop->image);
+            @endphp
+            <img src="{{ $imageUrl }}" alt="{{ $shop->name }}" class="shop-image">
             @endif
 
             {{-- 店舗情報 --}}

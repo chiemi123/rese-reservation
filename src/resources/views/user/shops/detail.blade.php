@@ -12,10 +12,13 @@
             <h1 class="shop__name">{{ $shop->name }}</h1>
         </div>
 
-        @if (!$shop->image_url)
+        @if (!$shop->image)
         <div class="shop-image-placeholder">No Image</div>
         @else
-        <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}" class="shop__image">
+        @php
+        $imageUrl = Str::startsWith($shop->image, 'http') ? $shop->image : asset($shop->image);
+        @endphp
+        <img src="{{ $imageUrl }}" alt="{{ $shop->name }}" class="shop__image">>
         @endif
 
         <p class="shop__tags">#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
