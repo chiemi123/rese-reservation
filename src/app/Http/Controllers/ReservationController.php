@@ -19,7 +19,14 @@ class ReservationController extends Controller
         $data = $request->validated();
 
         // 日付と時間を結合して reserved_at に設定
-        $data['reserved_at'] = Carbon::createFromFormat('Y-m-d H:i', $data['date'] . ' ' . $data['time']);
+        $reservedAt = Carbon::createFromFormat('Y-m-d H:i', $data['date'] . ' ' . $data['time']);
+
+        // ▼ ここで過去日時チェックを追加
+        if ($reservedAt->lt(Carbon::now())) {
+            return back()->withErrors(['reserved_at' => '過去の日時では予約できません'])->withInput();
+        }
+
+        $data['reserved_at'] = $reservedAt;
 
         // 同じ店舗・同じ日時にすでに予約があるかチェック
         $exists = Reservation::where('shop_id', $data['shop_id'])

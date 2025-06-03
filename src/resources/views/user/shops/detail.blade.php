@@ -45,11 +45,11 @@
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
 
             {{-- 日付 --}}
-            <input id="date" type="date" name="date" class="reservation-card__input" required>
+            <input id="date" type="date" name="date" class="reservation-card__input">
 
             {{-- 時間 --}}
             <div class="select-wrapper">
-                <select id="time" name="time" class="reservation-card__input" required>
+                <select id="time" name="time" class="reservation-card__input">
                     <option value="" disabled selected>時間を選択</option>
                     @for ($hour = 10; $hour <= 22; $hour++) {{-- 10時〜22時まで --}}
                         @for ($minute=0; $minute < 60; $minute +=10) {{-- 10分刻み --}}
@@ -65,7 +65,7 @@
 
             {{-- 人数 --}}
             <div class="select-wrapper">
-                <select id="number" name="number" class="reservation-card__input" required>
+                <select id="number" name="number" class="reservation-card__input">
                     <option value="" disabled selected>人数を選択</option>
                     @for($i = 1; $i <= 10; $i++)
                         <option value="{{ $i }}">{{ $i }}人</option>

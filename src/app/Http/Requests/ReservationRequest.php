@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Carbon\Carbon;
 
 class ReservationRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class ReservationRequest extends FormRequest
     {
         return [
             'shop_id' => 'required|exists:shops,id',
-            'date'    => 'required|date',
+            'date'    => ['required', 'date', 'after_or_equal:' . Carbon::today()->toDateString()],
             'time'    => 'required',
             'number'  => 'required|integer|min:1',
         ];
