@@ -40,10 +40,14 @@
     <div class="shop-list">
         @forelse ($shops as $shop)
         <div class="shop-card">
-            @if (!$shop->image_url)
+
+            @if (!$shop->image)
             <div class="shop-image-placeholder">No Image</div>
             @else
-            <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}" class="shop-card__image">
+            @php
+            $imageUrl = Str::startsWith($shop->image, 'http') ? $shop->image : asset($shop->image);
+            @endphp
+            <img src="{{ $imageUrl }}" alt="{{ $shop->name }}" class="shop-card__image">
             @endif
 
             <div class="shop-card__body">

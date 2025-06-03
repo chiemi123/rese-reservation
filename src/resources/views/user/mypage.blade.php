@@ -155,7 +155,11 @@
             <div class="favorites-grid">
                 @forelse ($favoriteShops as $shop)
                 <div class="shop-card">
-                    <img src="{{ $shop->image_url ?? '/images/default.jpg' }}" alt="{{ $shop->name }}" class="shop-card__image">
+
+                    @php
+                    $imageUrl = Str::startsWith($shop->image, 'http') ? $shop->image : asset($shop->image);
+                    @endphp
+                    <img src="{{ $imageUrl }}" alt="{{ $shop->name }}" class="shop-card__image">
 
                     <div class="shop-details">
                         <h4 class="shop-name">{{ $shop->name }}</h4>
