@@ -63,7 +63,6 @@
                         @endfor
                         @endfor
                 </select>
-                <span class="search-bar__arrow">⮟</span>
             </div>
 
             {{-- 人数 --}}
@@ -74,7 +73,6 @@
                         <option value="{{ $i }}">{{ $i }}人</option>
                         @endfor
                 </select>
-                <span class="search-bar__arrow">⮟</span>
             </div>
 
             {{-- 選択内容表示（動的に表示されるようにJS対応） --}}

@@ -118,7 +118,7 @@
 /* 入力欄 */
 .reservation-card__input {
     margin-left: 30px;
-    width: 150px;
+    width: 200px;
     padding: 12px;
     font-size: 16px;
     border: none;
@@ -182,7 +182,7 @@
 }
 
 /* カスタム矢印 */
-.search-bar__arrow {
+.select-wrapper::after {
     position: absolute;
     top: 40%;
     right: 1px;
@@ -191,7 +191,7 @@
     color: #555;
     font-size: 16px;
     font-family: Arial, sans-serif; /* Safariでの互換性 */
-    content: "\25BC";
+    content: "⮟";
 }
 
 /* 予約ボタン周り */
